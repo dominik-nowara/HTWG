@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<!--
+    suppresions.xml fuer die Uebungsaufgaben Programmiertechnik 1
+    Autor: H.Drachenfels
+    Erstellt am: 25.7.2017
+ -->
+<suppressions>
+
+    <suppress files="[A-Za-z][a-zA-Z0-9]*.java" checks="PackageNameCheck" />
+
+    <suppress files="Notenstatistik.java" checks="MagicNumberCheck" />
+
+    <suppress files="Noten.java" checks="MagicNumberCheck" />
+
+    <suppress files="Note.java" checks="MagicNumberCheck" />
+
+    <suppress files="Fachnote.java" checks="VisibilityModifierCheck" />
+
+    <suppress files="BenoteteLeistung.java" checks="MagicNumberCheck" />
+
+    <suppress files="Leistung.java" checks="DesignForExtensionCheck" />
+
+    <suppress files="HtmlNotenspiegel.java" checks="AvoidInlineConditionals" />
+
+</suppressions>
+

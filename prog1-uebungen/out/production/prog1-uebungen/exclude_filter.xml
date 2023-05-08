@@ -1,0 +1,17 @@
+<!--
+
+  Filter fuer findbugs 2.0:
+  - Internationalisierung fuer Programmiertechnik 1 nicht relevant
+
+  H.Drachenfels, 25.10.2012
+
+-->
+
+<FindBugsFilter>
+
+  <Match>
+    <Bug pattern="DM_DEFAULT_ENCODING" />
+  </Match>
+
+</FindBugsFilter>
+

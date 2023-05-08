@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"Alle Klassen und Schnittstellen","u":"allclasses-index.html"},{"p":"einstieg","l":"Einstieg"},{"p":"aufgabe2","l":"Histogramm"},{"p":"aufgabe1","l":"IntVar"},{"p":"aufgabe3","l":"Notenstatistik"},{"p":"aufgabe2","l":"Wuerfel"}];updateSearchResults();

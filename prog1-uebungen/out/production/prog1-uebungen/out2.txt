@@ -1,0 +1,8 @@
+Noten im Format Ganze,Zehntel oder Ganze.Zehntel eingeben (Ende mit Strg-D):
+
+Anzahl beruecksichtigter Noten: 22
+Anzahl Bestandene: 20
+Beste Note: 1,0
+Schlechteste Note: 5,0
+Durchschnitt Bestandene: 2,5
+Durchfallquote: 9,1%
