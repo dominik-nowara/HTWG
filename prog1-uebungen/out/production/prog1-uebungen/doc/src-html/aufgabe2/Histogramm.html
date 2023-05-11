@@ -25,7 +25,7 @@
 <span class="source-line-no">012</span><span id="line-12">public final class Histogramm {</span>
 <span class="source-line-no">013</span><span id="line-13">    private Histogramm() { }</span>
 <span class="source-line-no">014</span><span id="line-14"></span>
-<span class="source-line-no">015</span><span id="line-15">    private static final Scanner EINGABE = new Scanner(System.in);</span>
+<span class="source-line-no">015</span><span id="line-15">    private static final Scanner INPUT = new Scanner(System.in);</span>
 <span class="source-line-no">016</span><span id="line-16"></span>
 <span class="source-line-no">017</span><span id="line-17">    /**</span>
 <span class="source-line-no">018</span><span id="line-18">     * main ist der Startpunkt des Programms.</span>
@@ -42,8 +42,8 @@
 <span class="source-line-no">029</span><span id="line-29">        System.out.println("Ganze Zahlen zwischen 1 und 6 eingeben "</span>
 <span class="source-line-no">030</span><span id="line-30">                    + "(Ende mit Strg-D/Strg-Z):");</span>
 <span class="source-line-no">031</span><span id="line-31"></span>
-<span class="source-line-no">032</span><span id="line-32">        while (EINGABE.hasNextInt()) {</span>
-<span class="source-line-no">033</span><span id="line-33">            int number = EINGABE.nextInt();</span>
+<span class="source-line-no">032</span><span id="line-32">        while (INPUT.hasNextInt()) {</span>
+<span class="source-line-no">033</span><span id="line-33">            int number = INPUT.nextInt();</span>
 <span class="source-line-no">034</span><span id="line-34"></span>
 <span class="source-line-no">035</span><span id="line-35">            if (number &gt;= min &amp;&amp; number &lt;= max) {</span>
 <span class="source-line-no">036</span><span id="line-36">                ++histogramm[number - 1];</span>

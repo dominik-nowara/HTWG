@@ -77,20 +77,24 @@ public final class Notenstatistik {
                 Character.getNumericValue(grade.charAt(2));
 
             if (beforeComma < 1
-                || afterComma > 5) {
+                || beforeComma > 5) {
                 System.out.println("Note " + grade
                     + " wird wegen Vorkommastelle " + beforeComma
                     + " ignoriert!");
                 continue;
             } else if (((beforeComma == 4
                 || beforeComma == 5)
-                && afterComma != 0)
-                || (afterComma != 0
-                    && afterComma != 3
-                    && afterComma != 7)) {
+                && afterComma != 0)) {
                 System.out.println("Note " + grade
                     + " wird wegen Nachkommastelle " + afterComma
                     + " ignoriert!");
+                continue;
+            } else if (afterComma != 0
+                    && afterComma != 3
+                    && afterComma != 7) {
+                System.out.println("Note " + grade
+                        + " wird wegen Nachkommastelle " + afterComma
+                        + " ignoriert!");
                 continue;
             }
 

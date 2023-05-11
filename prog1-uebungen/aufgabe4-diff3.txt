@@ -1,0 +1,110 @@
+2,55c2,55
+< Note 0,0 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,1 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,2 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,3 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,4 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,5 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,6 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,7 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,8 wird wegen Vorkommastelle 0 ignoriert!
+< Note 0,9 wird wegen Vorkommastelle 0 ignoriert!
+< Note 1,1 wird wegen Nachkommastelle 1 ignoriert!
+< Note 1,2 wird wegen Nachkommastelle 2 ignoriert!
+< Note 1,4 wird wegen Nachkommastelle 4 ignoriert!
+< Note 1,5 wird wegen Nachkommastelle 5 ignoriert!
+< Note 1,6 wird wegen Nachkommastelle 6 ignoriert!
+< Note 1,8 wird wegen Nachkommastelle 8 ignoriert!
+< Note 1,9 wird wegen Nachkommastelle 9 ignoriert!
+< Note 2,1 wird wegen Nachkommastelle 1 ignoriert!
+< Note 2,2 wird wegen Nachkommastelle 2 ignoriert!
+< Note 2,4 wird wegen Nachkommastelle 4 ignoriert!
+< Note 2,5 wird wegen Nachkommastelle 5 ignoriert!
+< Note 2,6 wird wegen Nachkommastelle 6 ignoriert!
+< Note 2,8 wird wegen Nachkommastelle 8 ignoriert!
+< Note 2,9 wird wegen Nachkommastelle 9 ignoriert!
+< Note 3,1 wird wegen Nachkommastelle 1 ignoriert!
+< Note 3,2 wird wegen Nachkommastelle 2 ignoriert!
+< Note 3,4 wird wegen Nachkommastelle 4 ignoriert!
+< Note 3,5 wird wegen Nachkommastelle 5 ignoriert!
+< Note 3,6 wird wegen Nachkommastelle 6 ignoriert!
+< Note 3,8 wird wegen Nachkommastelle 8 ignoriert!
+< Note 3,9 wird wegen Nachkommastelle 9 ignoriert!
+< Note 4,1 wird wegen Nachkommastelle 1 ignoriert!
+< Note 4,2 wird wegen Nachkommastelle 2 ignoriert!
+< Note 4,3 wird wegen Nachkommastelle 3 ignoriert!
+< Note 4,4 wird wegen Nachkommastelle 4 ignoriert!
+< Note 4,5 wird wegen Nachkommastelle 5 ignoriert!
+< Note 4,6 wird wegen Nachkommastelle 6 ignoriert!
+< Note 4,7 wird wegen Nachkommastelle 7 ignoriert!
+< Note 4,8 wird wegen Nachkommastelle 8 ignoriert!
+< Note 4,9 wird wegen Nachkommastelle 9 ignoriert!
+< Note 5,1 wird wegen Nachkommastelle 1 ignoriert!
+< Note 5,2 wird wegen Nachkommastelle 2 ignoriert!
+< Note 5,3 wird wegen Nachkommastelle 3 ignoriert!
+< Note 5,4 wird wegen Nachkommastelle 4 ignoriert!
+< Note 5,5 wird wegen Nachkommastelle 5 ignoriert!
+< Note 5,6 wird wegen Nachkommastelle 6 ignoriert!
+< Note 5,7 wird wegen Nachkommastelle 7 ignoriert!
+< Note 5,8 wird wegen Nachkommastelle 8 ignoriert!
+< Note 5,9 wird wegen Nachkommastelle 9 ignoriert!
+< Note 6,0 wird wegen Vorkommastelle 6 ignoriert!
+< Note 6,1 wird wegen Vorkommastelle 6 ignoriert!
+< Note 7,0 wird wegen Vorkommastelle 7 ignoriert!
+< Note 8,0 wird wegen Vorkommastelle 8 ignoriert!
+< Note 9,0 wird wegen Vorkommastelle 9 ignoriert!
+---
+> Unzulaessige Note 0,0 wird ignoriert!
+> Unzulaessige Note 0,1 wird ignoriert!
+> Unzulaessige Note 0,2 wird ignoriert!
+> Unzulaessige Note 0,3 wird ignoriert!
+> Unzulaessige Note 0,4 wird ignoriert!
+> Unzulaessige Note 0,5 wird ignoriert!
+> Unzulaessige Note 0,6 wird ignoriert!
+> Unzulaessige Note 0,7 wird ignoriert!
+> Unzulaessige Note 0,8 wird ignoriert!
+> Unzulaessige Note 0,9 wird ignoriert!
+> Unzulaessige Note 1,1 wird ignoriert!
+> Unzulaessige Note 1,2 wird ignoriert!
+> Unzulaessige Note 1,4 wird ignoriert!
+> Unzulaessige Note 1,5 wird ignoriert!
+> Unzulaessige Note 1,6 wird ignoriert!
+> Unzulaessige Note 1,8 wird ignoriert!
+> Unzulaessige Note 1,9 wird ignoriert!
+> Unzulaessige Note 2,1 wird ignoriert!
+> Unzulaessige Note 2,2 wird ignoriert!
+> Unzulaessige Note 2,4 wird ignoriert!
+> Unzulaessige Note 2,5 wird ignoriert!
+> Unzulaessige Note 2,6 wird ignoriert!
+> Unzulaessige Note 2,8 wird ignoriert!
+> Unzulaessige Note 2,9 wird ignoriert!
+> Unzulaessige Note 3,1 wird ignoriert!
+> Unzulaessige Note 3,2 wird ignoriert!
+> Unzulaessige Note 3,4 wird ignoriert!
+> Unzulaessige Note 3,5 wird ignoriert!
+> Unzulaessige Note 3,6 wird ignoriert!
+> Unzulaessige Note 3,8 wird ignoriert!
+> Unzulaessige Note 3,9 wird ignoriert!
+> Unzulaessige Note 4,1 wird ignoriert!
+> Unzulaessige Note 4,2 wird ignoriert!
+> Unzulaessige Note 4,3 wird ignoriert!
+> Unzulaessige Note 4,4 wird ignoriert!
+> Unzulaessige Note 4,5 wird ignoriert!
+> Unzulaessige Note 4,6 wird ignoriert!
+> Unzulaessige Note 4,7 wird ignoriert!
+> Unzulaessige Note 4,8 wird ignoriert!
+> Unzulaessige Note 4,9 wird ignoriert!
+> Unzulaessige Note 5,1 wird ignoriert!
+> Unzulaessige Note 5,2 wird ignoriert!
+> Unzulaessige Note 5,3 wird ignoriert!
+> Unzulaessige Note 5,4 wird ignoriert!
+> Unzulaessige Note 5,5 wird ignoriert!
+> Unzulaessige Note 5,6 wird ignoriert!
+> Unzulaessige Note 5,7 wird ignoriert!
+> Unzulaessige Note 5,8 wird ignoriert!
+> Unzulaessige Note 5,9 wird ignoriert!
+> Unzulaessige Note 6,0 wird ignoriert!
+> Unzulaessige Note 6,1 wird ignoriert!
+> Unzulaessige Note 7,0 wird ignoriert!
+> Unzulaessige Note 8,0 wird ignoriert!
+> Unzulaessige Note 9,0 wird ignoriert!
