@@ -4,7 +4,6 @@ Unzulaessige Note 2,3 wird ignoriert!
 Unzulaessige Note 2-3 wird ignoriert!
 Unzulaessige Note 3,1 wird ignoriert!
 Unzulaessige Note 2,7 wird ignoriert!
-Unzulaessige Note 6.0 wird ignoriert!
 Unzulaessige Note 1 wird ignoriert!
 Unzulaessige Note 1,75 wird ignoriert!
 Unzulaessige Note gut wird ignoriert!
@@ -14,9 +13,9 @@ Unzulaessige Note x.3 wird ignoriert!
 Unzulaessige Note 1,y wird ignoriert!
 Unzulaessige Note 2.y wird ignoriert!
 
-Anzahl beruecksichtigter Noten: 3
+Anzahl beruecksichtigter Noten: 4
 Anzahl Bestandene: 2
-Beste Note: 1,0
-Schlechteste Note: 6,0
+Beste Note: 6,0
+Schlechteste Note: 3,0
 Durchschnitt Bestandene: 3,5
-Durchfallquote: 33,3%
+Durchfallquote: 50,0%

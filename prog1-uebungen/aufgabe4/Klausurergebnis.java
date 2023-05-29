@@ -1,6 +1,6 @@
 // Klausurergebnis.java
 package aufgabe4;
-import aufgabe4.schweiz.Noten;
+//import aufgabe4.Noten;
 import java.util.Locale;
 import java.util.Scanner;
 

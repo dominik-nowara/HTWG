@@ -92,7 +92,7 @@
          <br/>
       </p>
       <h2>Metrics</h2>
-      <p>257 lines of code analyzed,
+      <p>260 lines of code analyzed,
 	in 12 classes, 
 	in 5 packages.</p>
       <table width="500" cellpadding="5" cellspacing="2">
@@ -104,22 +104,22 @@
          <tr class="tablerow0">
             <td>High Priority Warnings</td>
             <td align="right">1</td>
-            <td align="right">3.89</td>
+            <td align="right">3.85</td>
          </tr>
          <tr class="tablerow1">
             <td>Medium Priority Warnings</td>
-            <td align="right">1</td>
-            <td align="right">3.89</td>
+            <td align="right"/>
+            <td align="right">0.00</td>
          </tr>
          <tr class="$totalClass">
             <td>
                <b>Total Warnings</b>
             </td>
             <td align="right">
-               <b>2</b>
+               <b>1</b>
             </td>
             <td align="right">
-               <b>7.78</b>
+               <b>3.85</b>
             </td>
          </tr>
       </table>
@@ -134,9 +134,6 @@
       <ul>
          <li>
             <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
-         </li>
-         <li>
-            <a href="#Warnings_STYLE">Dodgy code Warnings</a>
          </li>
          <li>
             <a href="#Details">Details</a>
@@ -156,16 +153,10 @@
          </tr>
          <tr class="tablerow1">
             <td>
-               <a href="#Warnings_STYLE">Dodgy code Warnings</a>
-            </td>
-            <td align="right">1</td>
-         </tr>
-         <tr class="tablerow0">
-            <td>
                <b>Total</b>
             </td>
             <td align="right">
-               <b>2</b>
+               <b>1</b>
             </td>
          </tr>
       </table>
@@ -194,29 +185,6 @@
             </td>
          </tr>
       </table>
-      <h2>
-         <a name="Warnings_STYLE">Dodgy code Warnings</a>
-      </h2>
-      <table class="warningtable" width="100%" cellspacing="0">
-         <tr class="tableheader">
-            <th align="left">Code</th>
-            <th align="left">Warning</th>
-         </tr>
-         <tr class="tablerow1" onclick="toggleRow('d2e33');">
-            <td>
-               <span class="priority-2">UC</span>
-            </td>
-            <td>Useless condition: it's known that afterComma != 7 at this point</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d2e33" style="display: none;">
-                  <a href="#UC_USELESS_CONDITION">Bug type UC_USELESS_CONDITION (click for details)</a>
-                  <br/>In class aufgabe3.Notenstatistik<br/>In method aufgabe3.Notenstatistik.main(String[])<br/>Value afterComma != 7<br/>At Notenstatistik.java:[line 85]</p>
-            </td>
-         </tr>
-      </table>
       <h1>
          <a name="Details">Details</a>
       </h1>
@@ -234,13 +202,6 @@ is required invoke a method on the existing Random object to obtain it.
 number; the values are too easily guessable. You should strongly consider using a java.security.SecureRandom instead
 (and avoid allocating a new SecureRandom for each random number needed).
 </p>
-
-    <h2>
-         <a name="UC_USELESS_CONDITION">UC_USELESS_CONDITION: Condition has no effect</a>
-      </h2>
-
-<p>This condition always produces the same result as the value of the involved variable that was narrowed before.
-Probably something else was meant or the condition can be removed.</p>
 
     </body>
 </html>

@@ -90,67 +90,71 @@
 <span class="source-line-no">077</span><span id="line-77">                Character.getNumericValue(grade.charAt(2));</span>
 <span class="source-line-no">078</span><span id="line-78"></span>
 <span class="source-line-no">079</span><span id="line-79">            if (beforeComma &lt; 1</span>
-<span class="source-line-no">080</span><span id="line-80">                || afterComma &gt; 5) {</span>
+<span class="source-line-no">080</span><span id="line-80">                || beforeComma &gt; 5) {</span>
 <span class="source-line-no">081</span><span id="line-81">                System.out.println("Note " + grade</span>
 <span class="source-line-no">082</span><span id="line-82">                    + " wird wegen Vorkommastelle " + beforeComma</span>
 <span class="source-line-no">083</span><span id="line-83">                    + " ignoriert!");</span>
 <span class="source-line-no">084</span><span id="line-84">                continue;</span>
 <span class="source-line-no">085</span><span id="line-85">            } else if (((beforeComma == 4</span>
 <span class="source-line-no">086</span><span id="line-86">                || beforeComma == 5)</span>
-<span class="source-line-no">087</span><span id="line-87">                &amp;&amp; afterComma != 0)</span>
-<span class="source-line-no">088</span><span id="line-88">                || (afterComma != 0</span>
-<span class="source-line-no">089</span><span id="line-89">                    &amp;&amp; afterComma != 3</span>
-<span class="source-line-no">090</span><span id="line-90">                    &amp;&amp; afterComma != 7)) {</span>
-<span class="source-line-no">091</span><span id="line-91">                System.out.println("Note " + grade</span>
-<span class="source-line-no">092</span><span id="line-92">                    + " wird wegen Nachkommastelle " + afterComma</span>
-<span class="source-line-no">093</span><span id="line-93">                    + " ignoriert!");</span>
-<span class="source-line-no">094</span><span id="line-94">                continue;</span>
-<span class="source-line-no">095</span><span id="line-95">            }</span>
-<span class="source-line-no">096</span><span id="line-96"></span>
-<span class="source-line-no">097</span><span id="line-97">            //Alle wichtigen Daten erfassen</span>
-<span class="source-line-no">098</span><span id="line-98"></span>
-<span class="source-line-no">099</span><span id="line-99">            final double transformed = beforeComma</span>
-<span class="source-line-no">100</span><span id="line-100">                + (double) afterComma / 10.0;</span>
-<span class="source-line-no">101</span><span id="line-101"></span>
-<span class="source-line-no">102</span><span id="line-102">            if (transformed &gt; worstGrade) {</span>
-<span class="source-line-no">103</span><span id="line-103">                worstGrade = transformed;</span>
-<span class="source-line-no">104</span><span id="line-104">            }</span>
-<span class="source-line-no">105</span><span id="line-105">            if (transformed &lt; bestGrade) {</span>
-<span class="source-line-no">106</span><span id="line-106">                bestGrade = transformed;</span>
-<span class="source-line-no">107</span><span id="line-107">            }</span>
-<span class="source-line-no">108</span><span id="line-108"></span>
-<span class="source-line-no">109</span><span id="line-109">            validGrades++;</span>
-<span class="source-line-no">110</span><span id="line-110"></span>
-<span class="source-line-no">111</span><span id="line-111">            if (beforeComma &lt; 5) {</span>
-<span class="source-line-no">112</span><span id="line-112">                passedGrades++;</span>
-<span class="source-line-no">113</span><span id="line-113">                averageGrade += transformed;</span>
-<span class="source-line-no">114</span><span id="line-114">            }</span>
-<span class="source-line-no">115</span><span id="line-115">        } // while</span>
-<span class="source-line-no">116</span><span id="line-116"></span>
-<span class="source-line-no">117</span><span id="line-117">        //------------------------------------------ Notenstatistik ausgeben</span>
-<span class="source-line-no">118</span><span id="line-118"></span>
-<span class="source-line-no">119</span><span id="line-119">        final double failureRate =</span>
-<span class="source-line-no">120</span><span id="line-120">            ((double) (validGrades - passedGrades)</span>
-<span class="source-line-no">121</span><span id="line-121">            / (double) validGrades) * 100.0;</span>
+<span class="source-line-no">087</span><span id="line-87">                &amp;&amp; afterComma != 0)) {</span>
+<span class="source-line-no">088</span><span id="line-88">                System.out.println("Note " + grade</span>
+<span class="source-line-no">089</span><span id="line-89">                    + " wird wegen Nachkommastelle " + afterComma</span>
+<span class="source-line-no">090</span><span id="line-90">                    + " ignoriert!");</span>
+<span class="source-line-no">091</span><span id="line-91">                continue;</span>
+<span class="source-line-no">092</span><span id="line-92">            } else if (afterComma != 0</span>
+<span class="source-line-no">093</span><span id="line-93">                    &amp;&amp; afterComma != 3</span>
+<span class="source-line-no">094</span><span id="line-94">                    &amp;&amp; afterComma != 7) {</span>
+<span class="source-line-no">095</span><span id="line-95">                System.out.println("Note " + grade</span>
+<span class="source-line-no">096</span><span id="line-96">                        + " wird wegen Nachkommastelle " + afterComma</span>
+<span class="source-line-no">097</span><span id="line-97">                        + " ignoriert!");</span>
+<span class="source-line-no">098</span><span id="line-98">                continue;</span>
+<span class="source-line-no">099</span><span id="line-99">            }</span>
+<span class="source-line-no">100</span><span id="line-100"></span>
+<span class="source-line-no">101</span><span id="line-101">            //Alle wichtigen Daten erfassen</span>
+<span class="source-line-no">102</span><span id="line-102"></span>
+<span class="source-line-no">103</span><span id="line-103">            final double transformed = beforeComma</span>
+<span class="source-line-no">104</span><span id="line-104">                + (double) afterComma / 10.0;</span>
+<span class="source-line-no">105</span><span id="line-105"></span>
+<span class="source-line-no">106</span><span id="line-106">            if (transformed &gt; worstGrade) {</span>
+<span class="source-line-no">107</span><span id="line-107">                worstGrade = transformed;</span>
+<span class="source-line-no">108</span><span id="line-108">            }</span>
+<span class="source-line-no">109</span><span id="line-109">            if (transformed &lt; bestGrade) {</span>
+<span class="source-line-no">110</span><span id="line-110">                bestGrade = transformed;</span>
+<span class="source-line-no">111</span><span id="line-111">            }</span>
+<span class="source-line-no">112</span><span id="line-112"></span>
+<span class="source-line-no">113</span><span id="line-113">            validGrades++;</span>
+<span class="source-line-no">114</span><span id="line-114"></span>
+<span class="source-line-no">115</span><span id="line-115">            if (beforeComma &lt; 5) {</span>
+<span class="source-line-no">116</span><span id="line-116">                passedGrades++;</span>
+<span class="source-line-no">117</span><span id="line-117">                averageGrade += transformed;</span>
+<span class="source-line-no">118</span><span id="line-118">            }</span>
+<span class="source-line-no">119</span><span id="line-119">        } // while</span>
+<span class="source-line-no">120</span><span id="line-120"></span>
+<span class="source-line-no">121</span><span id="line-121">        //------------------------------------------ Notenstatistik ausgeben</span>
 <span class="source-line-no">122</span><span id="line-122"></span>
-<span class="source-line-no">123</span><span id="line-123">        averageGrade =</span>
-<span class="source-line-no">124</span><span id="line-124">                averageGrade / (double) passedGrades;</span>
-<span class="source-line-no">125</span><span id="line-125"></span>
-<span class="source-line-no">126</span><span id="line-126">        System.out.println("\nAnzahl beruecksichtigter Noten: "</span>
-<span class="source-line-no">127</span><span id="line-127">            + validGrades);</span>
-<span class="source-line-no">128</span><span id="line-128">        System.out.println("Anzahl Bestandene: " + passedGrades);</span>
+<span class="source-line-no">123</span><span id="line-123">        final double failureRate =</span>
+<span class="source-line-no">124</span><span id="line-124">            ((double) (validGrades - passedGrades)</span>
+<span class="source-line-no">125</span><span id="line-125">            / (double) validGrades) * 100.0;</span>
+<span class="source-line-no">126</span><span id="line-126"></span>
+<span class="source-line-no">127</span><span id="line-127">        averageGrade =</span>
+<span class="source-line-no">128</span><span id="line-128">                averageGrade / (double) passedGrades;</span>
 <span class="source-line-no">129</span><span id="line-129"></span>
-<span class="source-line-no">130</span><span id="line-130">        if (validGrades &gt; 0) {</span>
-<span class="source-line-no">131</span><span id="line-131">            System.out.println("Beste Note: " + bestGrade);</span>
-<span class="source-line-no">132</span><span id="line-132">            System.out.println("Schlechteste Note: " + worstGrade);</span>
-<span class="source-line-no">133</span><span id="line-133">            System.out.println("Durchschnitt Bestandene: "</span>
-<span class="source-line-no">134</span><span id="line-134">                + String.format("%.1f", averageGrade));</span>
-<span class="source-line-no">135</span><span id="line-135">            System.out.println("Durchfallquote: "</span>
-<span class="source-line-no">136</span><span id="line-136">                + String.format("%.1f", failureRate) + "%");</span>
-<span class="source-line-no">137</span><span id="line-137">        }</span>
-<span class="source-line-no">138</span><span id="line-138">    } // main</span>
-<span class="source-line-no">139</span><span id="line-139">}</span>
-<span class="source-line-no">140</span><span id="line-140"></span>
+<span class="source-line-no">130</span><span id="line-130">        System.out.println("\nAnzahl beruecksichtigter Noten: "</span>
+<span class="source-line-no">131</span><span id="line-131">            + validGrades);</span>
+<span class="source-line-no">132</span><span id="line-132">        System.out.println("Anzahl Bestandene: " + passedGrades);</span>
+<span class="source-line-no">133</span><span id="line-133"></span>
+<span class="source-line-no">134</span><span id="line-134">        if (validGrades &gt; 0) {</span>
+<span class="source-line-no">135</span><span id="line-135">            System.out.println("Beste Note: " + bestGrade);</span>
+<span class="source-line-no">136</span><span id="line-136">            System.out.println("Schlechteste Note: " + worstGrade);</span>
+<span class="source-line-no">137</span><span id="line-137">            System.out.println("Durchschnitt Bestandene: "</span>
+<span class="source-line-no">138</span><span id="line-138">                + String.format("%.1f", averageGrade));</span>
+<span class="source-line-no">139</span><span id="line-139">            System.out.println("Durchfallquote: "</span>
+<span class="source-line-no">140</span><span id="line-140">                + String.format("%.1f", failureRate) + "%");</span>
+<span class="source-line-no">141</span><span id="line-141">        }</span>
+<span class="source-line-no">142</span><span id="line-142">    } // main</span>
+<span class="source-line-no">143</span><span id="line-143">}</span>
+<span class="source-line-no">144</span><span id="line-144"></span>
 
 
 
