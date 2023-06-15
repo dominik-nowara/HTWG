@@ -1,0 +1,8 @@
+Programmiertechnik 1 2,7
+Programmiertechnik 1 BE
+Mathematik 1 1,0
+Mathematik 1 NB
+Softwaremodellierung 5,0
+Softwaremodellierung BE
+Digitaltechnik 3,0
+Digitaltechnik BE

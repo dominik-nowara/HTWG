@@ -14,119 +14,118 @@
 <pre><span class="source-line-no">001</span><span id="line-1">// Klausurergebnis.java</span>
 <span class="source-line-no">002</span><span id="line-2">package aufgabe4;</span>
 <span class="source-line-no">003</span><span id="line-3">//import aufgabe4.Noten;</span>
-<span class="source-line-no">004</span><span id="line-4">import aufgabe4.Noten;</span>
-<span class="source-line-no">005</span><span id="line-5">import java.util.Locale;</span>
-<span class="source-line-no">006</span><span id="line-6">import java.util.Scanner;</span>
-<span class="source-line-no">007</span><span id="line-7"></span>
-<span class="source-line-no">008</span><span id="line-8">/**</span>
-<span class="source-line-no">009</span><span id="line-9"> * Klausurergebnis erstellt eine Notenstatistik.</span>
-<span class="source-line-no">010</span><span id="line-10"> * &lt;p&gt;</span>
-<span class="source-line-no">011</span><span id="line-11"> * Das Programm liest Noten als Strings ein und bestimmt die beste und</span>
-<span class="source-line-no">012</span><span id="line-12"> * die schlechteste Note, den Durchschnitt der Bestandenen sowie</span>
-<span class="source-line-no">013</span><span id="line-13"> * die Durchfallquote in Prozent.</span>
-<span class="source-line-no">014</span><span id="line-14"> * Das Programm ber&amp;uuml;cksichtigt dabei nur die laut Noten.istZulaessig</span>
-<span class="source-line-no">015</span><span id="line-15"> * erlaubten Noten. Andere Noten werden unter Ausgabe einer Warnung ignoriert.</span>
-<span class="source-line-no">016</span><span id="line-16"> * Welche Noten besser und schlechter sind, welche als bestanden oder</span>
-<span class="source-line-no">017</span><span id="line-17"> * durchgefallen gelten und wie die String-Darstellung der Noten aussieht,</span>
-<span class="source-line-no">018</span><span id="line-18"> * wird mit Methoden der Klasse Noten bestimmt.</span>
-<span class="source-line-no">019</span><span id="line-19"> * &lt;/p&gt;</span>
-<span class="source-line-no">020</span><span id="line-20"> * Das Programm gibt als Klausurergebnis folgende Werte aus:</span>
-<span class="source-line-no">021</span><span id="line-21"> * &lt;ul&gt;</span>
-<span class="source-line-no">022</span><span id="line-22"> * &lt;li&gt;die Anzahl der ber&amp;uuml;cksichtigten Noten&lt;/li&gt;</span>
-<span class="source-line-no">023</span><span id="line-23"> * &lt;li&gt;die Anzahl der Bestandenen&lt;/li&gt;</span>
-<span class="source-line-no">024</span><span id="line-24"> * &lt;li&gt;die beste Note&lt;/li&gt;</span>
-<span class="source-line-no">025</span><span id="line-25"> * &lt;li&gt;die schlechteste Note&lt;/li&gt;</span>
-<span class="source-line-no">026</span><span id="line-26"> * &lt;li&gt;den Durchschnitt der Bestandenen&lt;/li&gt;</span>
-<span class="source-line-no">027</span><span id="line-27"> * &lt;li&gt;die Durchfallquote&lt;/li&gt;</span>
-<span class="source-line-no">028</span><span id="line-28"> * &lt;/ul&gt;</span>
-<span class="source-line-no">029</span><span id="line-29"> *</span>
-<span class="source-line-no">030</span><span id="line-30"> * @author Dominik Nowara</span>
-<span class="source-line-no">031</span><span id="line-31"> * @version 09.05.2023</span>
-<span class="source-line-no">032</span><span id="line-32"> */</span>
-<span class="source-line-no">033</span><span id="line-33">public final class Klausurergebnis {</span>
-<span class="source-line-no">034</span><span id="line-34">    private Klausurergebnis() { }</span>
-<span class="source-line-no">035</span><span id="line-35"></span>
-<span class="source-line-no">036</span><span id="line-36">    private static final Scanner EINGABE = new Scanner(System.in);</span>
-<span class="source-line-no">037</span><span id="line-37"></span>
-<span class="source-line-no">038</span><span id="line-38">    /**</span>
-<span class="source-line-no">039</span><span id="line-39">     * main ist der Startpunkt des Programms.</span>
-<span class="source-line-no">040</span><span id="line-40">     * @param args wird nicht verwendet.</span>
-<span class="source-line-no">041</span><span id="line-41">     */</span>
-<span class="source-line-no">042</span><span id="line-42">    public static void main(String[] args) {</span>
-<span class="source-line-no">043</span><span id="line-43">        Locale.setDefault(Locale.GERMAN);</span>
-<span class="source-line-no">044</span><span id="line-44"></span>
-<span class="source-line-no">045</span><span id="line-45">        //Definieren der Werte, welche wir zur Ausgabe benötigen</span>
-<span class="source-line-no">046</span><span id="line-46">        double worstGrade = Noten.BESTE;</span>
-<span class="source-line-no">047</span><span id="line-47">        double bestGrade = Noten.SCHLECHTESTE;</span>
-<span class="source-line-no">048</span><span id="line-48">        int validGrades = 0;</span>
-<span class="source-line-no">049</span><span id="line-49">        int passedGrades = 0;</span>
-<span class="source-line-no">050</span><span id="line-50">        double averageGrade = 0.0;</span>
-<span class="source-line-no">051</span><span id="line-51"></span>
-<span class="source-line-no">052</span><span id="line-52">        //--------------------------------------------------- Noten einlesen</span>
-<span class="source-line-no">053</span><span id="line-53">        System.out.println("Noten im Format Ganze,Zehntel "</span>
-<span class="source-line-no">054</span><span id="line-54">                           + "oder Ganze.Zehntel eingeben (Ende mit Strg-D):");</span>
-<span class="source-line-no">055</span><span id="line-55"></span>
-<span class="source-line-no">056</span><span id="line-56">        while (EINGABE.hasNext()) {</span>
-<span class="source-line-no">057</span><span id="line-57">            String grade = EINGABE.next();</span>
-<span class="source-line-no">058</span><span id="line-58"></span>
-<span class="source-line-no">059</span><span id="line-59">            //---------------------------------------------- Eingabe pruefen</span>
-<span class="source-line-no">060</span><span id="line-60"></span>
-<span class="source-line-no">061</span><span id="line-61">            if (!Noten.istZulaessig(grade)) {</span>
-<span class="source-line-no">062</span><span id="line-62">                System.out.println("Unzulaessige Note " + grade</span>
-<span class="source-line-no">063</span><span id="line-63">                        + " wird ignoriert!");</span>
-<span class="source-line-no">064</span><span id="line-64">                continue;</span>
-<span class="source-line-no">065</span><span id="line-65">            }</span>
-<span class="source-line-no">066</span><span id="line-66"></span>
-<span class="source-line-no">067</span><span id="line-67">            //------------------------------------------------ Note erfassen</span>
-<span class="source-line-no">068</span><span id="line-68"></span>
-<span class="source-line-no">069</span><span id="line-69">            try {</span>
-<span class="source-line-no">070</span><span id="line-70">                var gradeDouble = Noten.toDouble(grade);</span>
-<span class="source-line-no">071</span><span id="line-71"></span>
-<span class="source-line-no">072</span><span id="line-72">                bestGrade = Noten.bessere(gradeDouble, bestGrade);</span>
-<span class="source-line-no">073</span><span id="line-73">                worstGrade = Noten.schlechtere(gradeDouble, worstGrade);</span>
-<span class="source-line-no">074</span><span id="line-74"></span>
-<span class="source-line-no">075</span><span id="line-75">                validGrades++;</span>
-<span class="source-line-no">076</span><span id="line-76"></span>
-<span class="source-line-no">077</span><span id="line-77">                if (Noten.istBestanden(gradeDouble)) {</span>
-<span class="source-line-no">078</span><span id="line-78">                    passedGrades++;</span>
-<span class="source-line-no">079</span><span id="line-79">                    averageGrade += gradeDouble;</span>
-<span class="source-line-no">080</span><span id="line-80">                }</span>
-<span class="source-line-no">081</span><span id="line-81">            } catch (Exception ex) {</span>
-<span class="source-line-no">082</span><span id="line-82">                System.out.println(ex.getMessage());</span>
-<span class="source-line-no">083</span><span id="line-83">            }</span>
-<span class="source-line-no">084</span><span id="line-84">        } // while</span>
-<span class="source-line-no">085</span><span id="line-85"></span>
-<span class="source-line-no">086</span><span id="line-86">        //------------------------------------------ Notenstatistik ausgeben</span>
-<span class="source-line-no">087</span><span id="line-87"></span>
-<span class="source-line-no">088</span><span id="line-88">        final double failureRate =</span>
-<span class="source-line-no">089</span><span id="line-89">                ((double) (validGrades - passedGrades)</span>
-<span class="source-line-no">090</span><span id="line-90">                        / (double) validGrades) * 100.0;</span>
-<span class="source-line-no">091</span><span id="line-91"></span>
-<span class="source-line-no">092</span><span id="line-92">        averageGrade =</span>
-<span class="source-line-no">093</span><span id="line-93">                averageGrade / (double) passedGrades;</span>
-<span class="source-line-no">094</span><span id="line-94"></span>
-<span class="source-line-no">095</span><span id="line-95">        System.out.println("\nAnzahl beruecksichtigter Noten: "</span>
-<span class="source-line-no">096</span><span id="line-96">                + validGrades);</span>
-<span class="source-line-no">097</span><span id="line-97">        System.out.println("Anzahl Bestandene: " + passedGrades);</span>
-<span class="source-line-no">098</span><span id="line-98"></span>
-<span class="source-line-no">099</span><span id="line-99">        if (validGrades &gt; 0) {</span>
-<span class="source-line-no">100</span><span id="line-100">            try {</span>
-<span class="source-line-no">101</span><span id="line-101">                System.out.println("Beste Note: "</span>
-<span class="source-line-no">102</span><span id="line-102">                        + Noten.toString(bestGrade));</span>
-<span class="source-line-no">103</span><span id="line-103">                System.out.println("Schlechteste Note: "</span>
-<span class="source-line-no">104</span><span id="line-104">                        + Noten.toString(worstGrade));</span>
-<span class="source-line-no">105</span><span id="line-105">                System.out.println("Durchschnitt Bestandene: "</span>
-<span class="source-line-no">106</span><span id="line-106">                        + Noten.toString(averageGrade));</span>
-<span class="source-line-no">107</span><span id="line-107">                System.out.println("Durchfallquote: "</span>
-<span class="source-line-no">108</span><span id="line-108">                        + String.format("%.1f", failureRate) + "%");</span>
-<span class="source-line-no">109</span><span id="line-109">            } catch (Exception ex) {</span>
-<span class="source-line-no">110</span><span id="line-110">                System.out.println("Die Note " + ex.getMessage()</span>
-<span class="source-line-no">111</span><span id="line-111">                        + " ist nicht anzeigbar!");</span>
-<span class="source-line-no">112</span><span id="line-112">            }</span>
-<span class="source-line-no">113</span><span id="line-113">        }</span>
-<span class="source-line-no">114</span><span id="line-114">    } // main</span>
-<span class="source-line-no">115</span><span id="line-115">}</span>
-<span class="source-line-no">116</span><span id="line-116"></span>
+<span class="source-line-no">004</span><span id="line-4">import java.util.Locale;</span>
+<span class="source-line-no">005</span><span id="line-5">import java.util.Scanner;</span>
+<span class="source-line-no">006</span><span id="line-6"></span>
+<span class="source-line-no">007</span><span id="line-7">/**</span>
+<span class="source-line-no">008</span><span id="line-8"> * Klausurergebnis erstellt eine Notenstatistik.</span>
+<span class="source-line-no">009</span><span id="line-9"> * &lt;p&gt;</span>
+<span class="source-line-no">010</span><span id="line-10"> * Das Programm liest Noten als Strings ein und bestimmt die beste und</span>
+<span class="source-line-no">011</span><span id="line-11"> * die schlechteste Note, den Durchschnitt der Bestandenen sowie</span>
+<span class="source-line-no">012</span><span id="line-12"> * die Durchfallquote in Prozent.</span>
+<span class="source-line-no">013</span><span id="line-13"> * Das Programm ber&amp;uuml;cksichtigt dabei nur die laut Noten.istZulaessig</span>
+<span class="source-line-no">014</span><span id="line-14"> * erlaubten Noten. Andere Noten werden unter Ausgabe einer Warnung ignoriert.</span>
+<span class="source-line-no">015</span><span id="line-15"> * Welche Noten besser und schlechter sind, welche als bestanden oder</span>
+<span class="source-line-no">016</span><span id="line-16"> * durchgefallen gelten und wie die String-Darstellung der Noten aussieht,</span>
+<span class="source-line-no">017</span><span id="line-17"> * wird mit Methoden der Klasse Noten bestimmt.</span>
+<span class="source-line-no">018</span><span id="line-18"> * &lt;/p&gt;</span>
+<span class="source-line-no">019</span><span id="line-19"> * Das Programm gibt als Klausurergebnis folgende Werte aus:</span>
+<span class="source-line-no">020</span><span id="line-20"> * &lt;ul&gt;</span>
+<span class="source-line-no">021</span><span id="line-21"> * &lt;li&gt;die Anzahl der ber&amp;uuml;cksichtigten Noten&lt;/li&gt;</span>
+<span class="source-line-no">022</span><span id="line-22"> * &lt;li&gt;die Anzahl der Bestandenen&lt;/li&gt;</span>
+<span class="source-line-no">023</span><span id="line-23"> * &lt;li&gt;die beste Note&lt;/li&gt;</span>
+<span class="source-line-no">024</span><span id="line-24"> * &lt;li&gt;die schlechteste Note&lt;/li&gt;</span>
+<span class="source-line-no">025</span><span id="line-25"> * &lt;li&gt;den Durchschnitt der Bestandenen&lt;/li&gt;</span>
+<span class="source-line-no">026</span><span id="line-26"> * &lt;li&gt;die Durchfallquote&lt;/li&gt;</span>
+<span class="source-line-no">027</span><span id="line-27"> * &lt;/ul&gt;</span>
+<span class="source-line-no">028</span><span id="line-28"> *</span>
+<span class="source-line-no">029</span><span id="line-29"> * @author Dominik Nowara</span>
+<span class="source-line-no">030</span><span id="line-30"> * @version 09.05.2023</span>
+<span class="source-line-no">031</span><span id="line-31"> */</span>
+<span class="source-line-no">032</span><span id="line-32">public final class Klausurergebnis {</span>
+<span class="source-line-no">033</span><span id="line-33">    private Klausurergebnis() { }</span>
+<span class="source-line-no">034</span><span id="line-34"></span>
+<span class="source-line-no">035</span><span id="line-35">    private static final Scanner EINGABE = new Scanner(System.in);</span>
+<span class="source-line-no">036</span><span id="line-36"></span>
+<span class="source-line-no">037</span><span id="line-37">    /**</span>
+<span class="source-line-no">038</span><span id="line-38">     * main ist der Startpunkt des Programms.</span>
+<span class="source-line-no">039</span><span id="line-39">     * @param args wird nicht verwendet.</span>
+<span class="source-line-no">040</span><span id="line-40">     */</span>
+<span class="source-line-no">041</span><span id="line-41">    public static void main(String[] args) {</span>
+<span class="source-line-no">042</span><span id="line-42">        Locale.setDefault(Locale.GERMAN);</span>
+<span class="source-line-no">043</span><span id="line-43"></span>
+<span class="source-line-no">044</span><span id="line-44">        //Definieren der Werte, welche wir zur Ausgabe benötigen</span>
+<span class="source-line-no">045</span><span id="line-45">        double worstGrade = Noten.BESTE;</span>
+<span class="source-line-no">046</span><span id="line-46">        double bestGrade = Noten.SCHLECHTESTE;</span>
+<span class="source-line-no">047</span><span id="line-47">        int validGrades = 0;</span>
+<span class="source-line-no">048</span><span id="line-48">        int passedGrades = 0;</span>
+<span class="source-line-no">049</span><span id="line-49">        double averageGrade = 0.0;</span>
+<span class="source-line-no">050</span><span id="line-50"></span>
+<span class="source-line-no">051</span><span id="line-51">        //--------------------------------------------------- Noten einlesen</span>
+<span class="source-line-no">052</span><span id="line-52">        System.out.println("Noten im Format Ganze,Zehntel "</span>
+<span class="source-line-no">053</span><span id="line-53">                           + "oder Ganze.Zehntel eingeben (Ende mit Strg-D):");</span>
+<span class="source-line-no">054</span><span id="line-54"></span>
+<span class="source-line-no">055</span><span id="line-55">        while (EINGABE.hasNext()) {</span>
+<span class="source-line-no">056</span><span id="line-56">            String grade = EINGABE.next();</span>
+<span class="source-line-no">057</span><span id="line-57"></span>
+<span class="source-line-no">058</span><span id="line-58">            //---------------------------------------------- Eingabe pruefen</span>
+<span class="source-line-no">059</span><span id="line-59"></span>
+<span class="source-line-no">060</span><span id="line-60">            if (!Noten.istZulaessig(grade)) {</span>
+<span class="source-line-no">061</span><span id="line-61">                System.out.println("Unzulaessige Note " + grade</span>
+<span class="source-line-no">062</span><span id="line-62">                        + " wird ignoriert!");</span>
+<span class="source-line-no">063</span><span id="line-63">                continue;</span>
+<span class="source-line-no">064</span><span id="line-64">            }</span>
+<span class="source-line-no">065</span><span id="line-65"></span>
+<span class="source-line-no">066</span><span id="line-66">            //------------------------------------------------ Note erfassen</span>
+<span class="source-line-no">067</span><span id="line-67"></span>
+<span class="source-line-no">068</span><span id="line-68">            try {</span>
+<span class="source-line-no">069</span><span id="line-69">                var gradeDouble = Noten.toDouble(grade);</span>
+<span class="source-line-no">070</span><span id="line-70"></span>
+<span class="source-line-no">071</span><span id="line-71">                bestGrade = Noten.bessere(gradeDouble, bestGrade);</span>
+<span class="source-line-no">072</span><span id="line-72">                worstGrade = Noten.schlechtere(gradeDouble, worstGrade);</span>
+<span class="source-line-no">073</span><span id="line-73"></span>
+<span class="source-line-no">074</span><span id="line-74">                validGrades++;</span>
+<span class="source-line-no">075</span><span id="line-75"></span>
+<span class="source-line-no">076</span><span id="line-76">                if (Noten.istBestanden(gradeDouble)) {</span>
+<span class="source-line-no">077</span><span id="line-77">                    passedGrades++;</span>
+<span class="source-line-no">078</span><span id="line-78">                    averageGrade += gradeDouble;</span>
+<span class="source-line-no">079</span><span id="line-79">                }</span>
+<span class="source-line-no">080</span><span id="line-80">            } catch (Exception ex) {</span>
+<span class="source-line-no">081</span><span id="line-81">                System.out.println(ex.getMessage());</span>
+<span class="source-line-no">082</span><span id="line-82">            }</span>
+<span class="source-line-no">083</span><span id="line-83">        } // while</span>
+<span class="source-line-no">084</span><span id="line-84"></span>
+<span class="source-line-no">085</span><span id="line-85">        //------------------------------------------ Notenstatistik ausgeben</span>
+<span class="source-line-no">086</span><span id="line-86"></span>
+<span class="source-line-no">087</span><span id="line-87">        final double failureRate =</span>
+<span class="source-line-no">088</span><span id="line-88">                ((double) (validGrades - passedGrades)</span>
+<span class="source-line-no">089</span><span id="line-89">                        / (double) validGrades) * 100.0;</span>
+<span class="source-line-no">090</span><span id="line-90"></span>
+<span class="source-line-no">091</span><span id="line-91">        averageGrade =</span>
+<span class="source-line-no">092</span><span id="line-92">                averageGrade / (double) passedGrades;</span>
+<span class="source-line-no">093</span><span id="line-93"></span>
+<span class="source-line-no">094</span><span id="line-94">        System.out.println("\nAnzahl beruecksichtigter Noten: "</span>
+<span class="source-line-no">095</span><span id="line-95">                + validGrades);</span>
+<span class="source-line-no">096</span><span id="line-96">        System.out.println("Anzahl Bestandene: " + passedGrades);</span>
+<span class="source-line-no">097</span><span id="line-97"></span>
+<span class="source-line-no">098</span><span id="line-98">        if (validGrades &gt; 0) {</span>
+<span class="source-line-no">099</span><span id="line-99">            try {</span>
+<span class="source-line-no">100</span><span id="line-100">                System.out.println("Beste Note: "</span>
+<span class="source-line-no">101</span><span id="line-101">                        + Noten.toString(bestGrade));</span>
+<span class="source-line-no">102</span><span id="line-102">                System.out.println("Schlechteste Note: "</span>
+<span class="source-line-no">103</span><span id="line-103">                        + Noten.toString(worstGrade));</span>
+<span class="source-line-no">104</span><span id="line-104">                System.out.println("Durchschnitt Bestandene: "</span>
+<span class="source-line-no">105</span><span id="line-105">                        + Noten.toString(averageGrade));</span>
+<span class="source-line-no">106</span><span id="line-106">                System.out.println("Durchfallquote: "</span>
+<span class="source-line-no">107</span><span id="line-107">                        + String.format("%.1f", failureRate) + "%");</span>
+<span class="source-line-no">108</span><span id="line-108">            } catch (Exception ex) {</span>
+<span class="source-line-no">109</span><span id="line-109">                System.out.println("Die Note " + ex.getMessage()</span>
+<span class="source-line-no">110</span><span id="line-110">                        + " ist nicht anzeigbar!");</span>
+<span class="source-line-no">111</span><span id="line-111">            }</span>
+<span class="source-line-no">112</span><span id="line-112">        }</span>
+<span class="source-line-no">113</span><span id="line-113">    } // main</span>
+<span class="source-line-no">114</span><span id="line-114">}</span>
+<span class="source-line-no">115</span><span id="line-115"></span>
 
 
 
