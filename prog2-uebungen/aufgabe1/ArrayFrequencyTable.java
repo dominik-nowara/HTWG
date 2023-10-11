@@ -43,14 +43,7 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
             return;
         }
         else if (wordPosition == -1) {
-            int position = size;
-
-            for (int i = 0; i < size; i++) {
-                if (fqTable[i].getFrequency() < f) {
-                    position = i;
-                    break;
-                }
-            }
+            int position = getNewPosition(f);
 
             if (fqTable.length + 1 == size)
                 fqTable = Arrays.copyOf(fqTable, 2 * size);
@@ -66,15 +59,7 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
 
         Word tempWord = fqTable[wordPosition];
         tempWord.addFrequency(f);
-        int position = size;
-
-        for (int i = 0; i < size; i++) {
-            if (fqTable[i].getFrequency() < tempWord.getFrequency() + f) {
-                position = i;
-                break;
-            }
-        }
-
+        int position = getNewPosition(f);
 
         for (int i = wordPosition; i > position; i--) {
             fqTable[i] = fqTable[i - 1];
@@ -109,5 +94,18 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
         }
 
         return -1;
+    }
+
+    private int getNewPosition(int f) {
+        int position = size;
+
+        for (int i = 0; i < size; i++) {
+            if (fqTable[i].getFrequency() < f) {
+                position = i;
+                break;
+            }
+        }
+
+        return position;
     }
 }
