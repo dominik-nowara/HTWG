@@ -26,6 +26,7 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 	@Override
 	public void collectNMostFrequent(int n, FrequencyTable fq) {
 		fq.clear();
+		n = Math.max(n, 0);
 		n = Math.min(n, size());
 
 		for (int i = 0; i < n; i++) {
