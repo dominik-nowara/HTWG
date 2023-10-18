@@ -1,5 +1,7 @@
 package aufgabe2;
 
+import java.io.Console;
+
 public class LinkedListFrequencyTable extends AbstractFrequencyTable {
     private Node begin;
     private Node end;
@@ -13,6 +15,7 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
     @Override
     public void clear() {
         begin = null;
+        end = null;
         size = 0;
     }
 
@@ -27,60 +30,69 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
 
         Node foundNode = getNode(w);
 
+        //Node doesn't exist yet
         if (foundNode == null && f == 1) {
-            Node newNode = new Node(new Word(w, f), null, end);
-            end.setNext(newNode);
-            end = newNode;
-            size++;
+            addLast(new Word(w, f));
             return;
         }
         else if (foundNode == null) {
+            Node next = nextSmaller(f);
+
+            if (next == null) {
+                addLast(new Word(w, f));
+                return;
+            }
+
             size++;
-            foundNode = new Node(new Word(w, f), null, null);
+
+            if (next.getPrev() == null) {
+                Node newNode = new Node(new Word(w, f), begin, null);
+                begin.setPrev(newNode);
+                begin = newNode;
+
+                return;
+            }
+
+            Node newNode = new Node(new Word(w, f), next, next.getPrev());
+
+            next.getPrev().setNext(newNode);
+            next.setPrev(newNode);
+            return;
         }
-        else {
-            foundNode.getWord().addFrequency(f);
 
-            Node beforeFound = foundNode.getPrev();
-            Node afterFround = foundNode.getNext();
+        foundNode.getWord().addFrequency(f);
 
-            if (beforeFound != null && afterFround != null) {
-                beforeFound.setNext(afterFround);
-                afterFround.setPrev(beforeFound);
-            }
-            else if (beforeFound != null) {
-                beforeFound.setNext(null);
-                end = beforeFound;
-            }
-            else if (afterFround != null) {
-                afterFround.setPrev(null);
-                begin = afterFround;
-            }
+        if (foundNode == begin)
+            return;
 
-            foundNode.setNew(null, null);
+        if (foundNode.getPrev() != null && foundNode.getNext() != null) {
+            foundNode.getPrev().setNext(foundNode.getNext());
+            foundNode.getNext().setPrev(foundNode.getPrev());
+        }
+        else if (foundNode.getPrev() != null) {
+            foundNode.getPrev().setNext(null);
+            end = foundNode.getPrev();
         }
 
         Node next = nextSmaller(foundNode.getWord().getFrequency());
 
         if (next == null) {
-            foundNode.setPrev(end);
-            end.setNext(foundNode);
-            end = foundNode;
             return;
         }
 
-        if (next == begin)
+
+        foundNode.setNew(null, null);
+
+        if (next.getPrev() == null) {
+            foundNode.setNew(begin, null);
+            begin.setPrev(foundNode);
             begin = foundNode;
-
-        Node prev = next.getPrev();
-
-        next.setPrev(foundNode);
-        foundNode.setNext(next);
-
-        if (prev != null) {
-            foundNode.setPrev(prev);
-            prev.setNext(foundNode);
+            return;
         }
+
+        foundNode.setNew(next, next.getPrev());
+        next.getPrev().setNext(foundNode);
+        next.setPrev(foundNode);
     }
 
     @Override
@@ -90,7 +102,6 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         }
 
         Node currentNode = begin;
-
         for (int i = 0; i < pos; i++) {
             currentNode = currentNode.getNext();
         }
@@ -105,19 +116,23 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         }
 
         Node getNode = getNode(w);
-
         if (getNode != null)
             return getNode.getWord().getFrequency();
 
         return 0;
     }
 
+    private void addLast(Word word) {
+        Node newNode = new Node(word, null, end);
+        end.setNext(newNode);
+        end = newNode;
+        size++;
+    }
+
     private Node getNode(String w) {
         Node currentNode = begin;
 
         for (int i = 0; i < size; i++) {
-            if (currentNode == null) return null;
-
             if (w.equals(currentNode.getWord().getWord())) {
                 return currentNode;
             }
@@ -132,8 +147,6 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         Node currentNode = begin;
 
         for (int i = 0; i < size; i++) {
-            if (currentNode == null) return null;
-
             if (currentNode.getWord().getFrequency() < f) {
                 return currentNode;
             }
