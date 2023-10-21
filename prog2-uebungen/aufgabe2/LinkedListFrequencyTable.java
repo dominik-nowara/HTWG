@@ -80,9 +80,6 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
             return;
         }
 
-
-        foundNode.setNew(null, null);
-
         if (next.getPrev() == null) {
             foundNode.setNew(begin, null);
             begin.setPrev(foundNode);
