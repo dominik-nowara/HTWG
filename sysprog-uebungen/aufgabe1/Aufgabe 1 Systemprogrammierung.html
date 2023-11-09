@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://www-home.htwg-konstanz.de/~drachen/sypr/Aufgabe1/Aufgabe1.html -->
+<html lang="de"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<style type="text/css">
+body { font-family:helvetica,arial,sans-serif; line-height:1.4; }
+a { text-decoration:none; color:#059c8c; font-weight:600; }
+pre { background-color:#d9e5ec; width:90%; }
+code { font-size:larger; white-space:nowrap; }
+h1 { font-size:x-large; }
+h2 { font-size:large; }
+h3 { font-size:medium; }
+</style>
+<title>Aufgabe 1 Systemprogrammierung</title>
+</head>
+<body>
+
+<h1>Systemprogrammierung - AIN/2<br>
+<span style="font-size:smaller">Sommersemester 2023</span></h1>
+<hr>
+
+<h2>Übungsaufgabe 1: C Grundtypen</h2>
+<p>
+<b>Abgabe bis 6.4.2023</b></p>
+
+<h3>Programmierung</h3>
+<p>
+Auf den Seiten 2-15 bis 2-19 der Vorlesungsunterlagen sind 15&nbsp;Grundtypen aufgezählt.</p>
+<p>
+Schreiben Sie ein C-Programm <code>aufgabe1.c</code>, das zu jedem Grundtyp
+je eine lokale Variable mit Initialisierung enthält.
+Zusätzlich soll das Programm eine Zeigerdefinition
+<code>&nbsp;char* s = "Hallo";&nbsp;</code>
+enthalten. Sie müssen also insgesamt 16 Variablen definieren.</p>
+<p>
+Das Programm soll die <u>Adresse</u>, den <u>Platzbedarf</u>, den <u>Typ</u>,
+den <u>Namen</u> und den <u>Wert</u> dieser 16 Variablen ausgeben.
+Pro Variable soll genau eine Zeile mit den genannten fünf Spalten
+ausgegeben werden, immer mit der Variablenadresse beginnend.</p>
+<p>
+Abschließend soll das Programm ausgeben, ob es mit dem C-Datenmodell
+<code>"ILP32"</code>, <code>"LP64"</code> oder <code>"LLP64"</code> arbeitet,
+oder ob keines der drei Modelle vorliegt:</p>
+<ul>
+<li>
+man spricht von einem <b><code>ILP32</code></b>-Datenmodell,
+wenn die Typen <code>int</code> (<b><code>I</code></b>),
+<code>long&nbsp;int</code> (<b><code>L</code></b>) und
+<code>char*</code> (<b><code>P</code></b>) je 32 Bit belegen</li>
+<li>
+ein <b><code>LP64</code></b>-Datenmodell liegt vor,
+wenn <code>int</code> 32 Bit belegt und
+sowohl <code>long&nbsp;int</code> (<b><code>L</code></b>)
+als auch <code>char*</code> (<b><code>P</code></b>) je 64 Bit belegen</li>
+<li>
+ein <b><code>LLP64</code></b>-Datenmodell liegt vor,
+wenn <code>int</code> sowie <code>long&nbsp;int</code> je 32 Bit belegen und
+sowohl <code>long&nbsp;long&nbsp;int</code> (<b><code>LL</code></b>)
+als auch <code>char*</code> (<b><code>P</code></b>) je 64 Bit belegen</li>
+</ul>
+<p>
+<em>
+Hinweis:<br>
+Achten Sie bei den Werten auf die richtigen von C unterstützen
+<code>printf</code>-Formatangabe. Bei den Formatangaben für Zahlen brauchen Sie 
+eine Kombination aus "length modifier" und "conversion specifier".
+Ein übersichtliche Darstellung dazu finden Sie unter
+<a href="https://en.cppreference.com/w/c/io/fprintf" target="_blank">
+https://en.cppreference.com/w/c/io/fprintf</a>.
+Andere Quellen sind das Linux Manual (Kommando <code>&nbsp;man&nbsp;3&nbsp;printf&nbsp;</code>)
+oder einschlägige Internetseiten wie
+<a href="https://man7.org/linux/man-pages/index.html" target="_blank">
+https://man7.org/linux/man-pages/index.html</a>
+(siehe auch die Literaturseite der Vorlesung).
+</em></p>
+
+<br>
+
+<h3>Test und Qualitätssicherung</h3>
+<p>
+Speichern Sie die Datei <a href="http://www-home.htwg-konstanz.de/~drachen/sypr/Aufgabe1/Makefile" download="">&#10549;&nbsp;Makefile</a>
+in Ihr Arbeitverzeichnis der Aufgabe&nbsp;1.
+Übersetzen und binden Sie dann Ihr Programm mit dem Befehl
+<br>
+<span style="color:red;font-style:italic">
+Diesen und alle weiteren Befehle abtippen, nicht mit der Maus kopieren, wenn Sie etwas lernen wollen!
+</span></p>
+<pre style="user-select:none">    make aufgabe1</pre>
+<p>
+<em>
+Das Programm <code>make</code> automatisiert mittels der Beschreibungen
+in <code>Makefile</code> das Übersetzen und Binden Ihres Programms.
+<br>
+Die Entsprechung dazu bei den Java-Übungen in Programmiertechnik&nbsp;1
+war das Automatisierungswerkzeug <code>ant</code> mit <code>build.xml</code>.</em></p>
+<p>
+Führen Sie Ihr Programm aus und lassen Sie die Ausgaben auch mal vom
+<code>sort</code>-Kommando aufsteigend oder absteigend sortieren:</p>
+<pre style="user-select:none">    ./aufgabe1
+    ./aufgabe1 | sort
+    ./aufgabe1 | sort -r
+</pre>
+<p>
+Betrachten Sie die Ausgaben und beantworten Sie folgende Fragen:</p>
+<ul>
+<li>
+Sind die Variablen in der Reihenfolge ihrer Definition im Hauptspeicher abgelegt?</li>
+<li>
+Liegen die Variablen direkt hintereinander oder gibt es Lücken?
+Falls es Lücken gibt, wo liegen sie? Können Sie sich erklären,
+warum es eventuell Lücken gibt?</li>
+<li>
+Wie viel Speicher belegen die Variablen insgesamt,
+also inklusive eventueller Lücken?</li>
+</ul>
+<p>
+Prüfen Sie, ob das Analysewerkzeug <code>cppcheck</code> Probleme in Ihrem
+Quellcode meldet.
+<br>
+Versuchen Sie, wenn möglich, die Probleme zu beheben. 
+Welche Problemen lassen sich nicht beheben?</p>
+<pre style="user-select:none">    cppcheck --enable=warning,style --std=c11 aufgabe1.c</pre>
+Sie können <code>cppcheck</code> auch vereinfacht über 
+<code>make</code> aufrufen:
+<pre style="user-select:none">    make cppcheck</pre>
+<p>
+<em>
+Die Entsprechung zu <code>cppcheck</code> bei den Java-Übungen in
+Programmiertechnik&nbsp;1 war das Analysewerkzeug <code>spotbugs</code>.
+</em></p>
+
+<br>
+
+<h3>Protokoll</h3>
+<p>
+Erstellen Sie ein Protokoll Ihres Test-Schritts.
+Öffnen Sie dazu eine neue Konsole oder
+setzen Sie Ihre aktuelle Konsole zurück (Konsolenmenü
+<code>Terminal&nbsp;-&gt;&nbsp;Zurücksetzen und leeren</code>).</p>
+<p>
+Rufen Sie in der neuen bzw. zurückgesetzten Konsole
+<code>make clean</code> auf und wiederholen Sie alle Kommandos
+aus dem Test-Schritt.</p>
+<p>
+Markieren Sie die Konsolenausgabe abschließend per Menüpunkt
+<code>Bearbeiten&nbsp;-&gt;&nbsp;Alles&nbsp;markieren</code>.
+Öffnen Sie einen Texteditor und kopieren Sie die markierte Konsolenausgabe
+durch drücken der mittleren Maustaste (des Rads) in das Editorfenster.
+Speichern Sie mit dem Editor die kopierte Konsolenausgabe als Datei
+<code>protokoll-aufgabe1.txt</code> im gleichen Verzeichnis wie Ihr Programm.</p>
+<p>
+Ergänzen Sie mit dem Texteditor in <code>protokoll-aufgabe1.txt</code>
+Ihre Antworten auf die Fragen aus dem Test-Schritt.</p>
+
+<br>
+
+<h3>Abgabe</h3>
+<p>
+Führen Sie Ihr Programm und Ihre Protokolldatei vor.</p>
+<!--
+<p>
+Verpacken Sie alle Dateien Ihrer L&ouml;sung in ein Archiv:</p>
+<pre>
+    tar cvzf aufgabe1.tar.gz Makefile aufgabe1.c protokoll-aufgabe1.txt
+</pre>
+<p>
+Laden Sie das Archiv dann in Moodle hoch (siehe dort).</p>
+-->
+<p>
+<em>
+Hinweis:<br>
+Der Compiler <code>gcc</code> darf für Ihr Programm 
+keine Fehler oder Warnungen mehr ausgeben.<br>
+Ihr Programm muss außerdem ordentlich formatierte sein.
+Bessern Sie die Formatierung gegebenenfalls mit <code>astyle</code> nach:<br>
+<code>&nbsp;&nbsp;astyle -p -H --style=ansi aufgabe1.c</code></em></p>
+
+<br>
+
+<h3>Freiwillige Zusatzaufgabe (pro Spiegelpunkt 1 Bonuspunkt)</h3>
+<ul>
+<li>
+Erstellen Sie eine Version <code>aufgabe1-int.c</code> Ihres Programms,
+die Variablen mit den in C99 eingeführten 28 ganzzahligen Typen 
+fester Länge <code>int8_t</code>, <code>int16_t</code> usw. definiert.
+Initialisieren Sie die Variablen jeweils mit der größten 
+darstellbaren Zahl<code>INT8_MAX</code>, <code>INT16_MAX</code> usw..
+Das Programm soll wie im Pflichtteil jeweils Adresse, Platzbedarf, Typ, Name 
+und Wert der 28 Variablen ausgeben. Verwenden Sie für die Ausgabe des 
+Werts die ebenfalls in C99 eingeführten Formatangaben <code>PRId8</code>, 
+<code>PRId16</code> usw..<p></p>
+<p><em>
+Hinweis:
+die Typen mit den zugehörigen symbolischen Konstanten und Formatangaben 
+finden Sie unter
+<a href="https://en.cppreference.com/w/c/types/integer" target="_blank">
+https://en.cppreference.com/w/c/types/integer</a></em></p>
+<p>
+Übersetzen, binden, prüfen und testen Sie Ihr Programm mit den 
+folgenden Aufrufen:</p>
+<pre>    make aufgabe1-int
+    cppcheck --enable=warning,style --std=c11 aufgabe1-int.c
+    ./aufgabe1-int
+</pre>
+</li>
+<li>
+<p>
+Erstellen Sie eine Version <code>aufgabe1-ansi.c</code> Ihres Programms,
+die sich mit dem Sprachstandard C89 (auch ANSI-C genannt) begnügt.
+ANSI-C war auch nach der Veröffentlichung von C99 in der Praxis in 
+weitem Gebrauch.</p>
+<p>
+Variablendefinitionen und Anweisungen dürfen in C89 nicht gemischt werden.
+Definieren Sie deshalb alle Variablen am Anfang von <code>main</code> gleich 
+nach der öffnenden geschweiften Klammer.</p>
+<p>
+Die ganzzahlige Datentypen <code>long&nbsp;long&nbsp;int</code> und
+<code>unsigned&nbsp;long&nbsp;long&nbsp;int</code> sowie den Datentyp 
+<code>bool</code> bzw. <code>_Bool</code> gab es in C89 noch nicht.</p>
+<p>
+Es gab in C89 auch noch nicht für alle Zahltypen passende 
+<code>printf</code>-Formatangaben.
+Verwenden Sie deshalb für <code>sizeof</code>-Werte <code>%lu</code> und 
+fügen Sie vor dem zugehörigen Argument eine Typanpassung 
+<code>(unsigned&nbsp;long)</code> ein.
+Ein-Byte-Zahlen geben Sie einfach mit <code>%d</code> bzw. <code>%u</code> aus.
+Die Typanpassung des zugehörigen Arguments funktioniert hier automatisch.</p>
+<p>
+Übersetzen, binden, prüfen und testen Sie Ihr Programm mit den 
+folgenden Aufrufen:</p>
+<pre>    make "CFLAGS=-g -W -Wall -ansi -pedantic" aufgabe1-ansi
+    cppcheck --enable=warning,style --std=c89 aufgabe1-ansi.c
+    ./aufgabe1-ansi
+</pre>
+</li>
+</ul>
+
+<br>
+
+<hr>
+<address style="font-size:smaller; text-align:left; float:left;">
+<a href="http://www-home.htwg-konstanz.de/~drachen/">Prof. Dr. H. Drachenfels</a>
+<br>
+<a href="https://www.htwg-konstanz.de/">Hochschule Konstanz</a> -
+<a href="https://www.htwg-konstanz.de/info/impressum">Impressum</a> -
+<a href="https://www.htwg-konstanz.de/info/datenschutzerklaerung/">Datenschutzerklärung</a>
+</address>
+<em style="font-size:smaller; text-align:right; float:right;">
+Letzte Änderung: 1.3.2023
+</em>
+
+
+
+
+</body></html>
