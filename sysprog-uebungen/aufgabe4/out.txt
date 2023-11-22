@@ -1,0 +1,9 @@
+xxx: No such file or directory (errno 2)
+listfiles.c (regular, 1221 Byte)
+/dev/tty (other)
+
+listfiles-example-dir:
+example-subdir (directory)
+
+listfiles-example-dir/example-subdir:
+example.txt (regular, 18 Byte)
