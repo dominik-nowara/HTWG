@@ -3,11 +3,21 @@
 
 #include "fileinfo.h"
 
+#include <limits.h>
 #include <stdio.h>
+#include <dirent.h>
+#include <errno.h>
 #include <stdlib.h>
-#include <errno.h>  // errno
-#include <string.h> // strerror
 #include <sys/stat.h>
+#include <string.h>
+#include <unistd.h>
+
+
+static fileinfo* list_directory(char* directory);
+static void print_regular(char const* name, int bitlength);
+static void print_directory(char const* path, char const* filename, fileinfo* files);
+static void print_other(char const* name);
+
 
 fileinfo* fileinfo_create(char* name) {
     int nameLength = strlen(name);
@@ -23,7 +33,11 @@ fileinfo* fileinfo_create(char* name) {
         return NULL;
     }
 
-    fileinfo* info = malloc(sizeof(fileinfo));
+    fileinfo* info = malloc(sizeof(fileinfo)); 
+    if (info == NULL) {
+        errno = ENOMEM;
+        return NULL;
+    }
     strcpy(info->filename, name);
 
     if (S_ISDIR(sb.st_mode)) {
@@ -32,27 +46,7 @@ fileinfo* fileinfo_create(char* name) {
     }
     else if (S_ISREG(sb.st_mode)) {
         info->type = filetype_regular;
-
-        FILE *fp = fopen(name, "r");
-        if (fp == NULL) {
-            errno = ENOENT;
-            free(info);
-            return NULL;
-        }
-
-        unsigned bytes = 0;
-        while (fgetc(fp) != EOF) {
-            ++bytes;
-        }
-
-        if (ferror(fp)) {
-            errno = EIO;
-            fclose(fp);
-            return NULL;
-        }
-
-        info->bytes = bytes;
-        fclose(fp);
+        info->bytes = sb.st_size;
     }
     else {
         info->type = filetype_other;
@@ -93,10 +87,9 @@ void fileinfo_destroy(fileinfo* info) {
     free(info);
 }
 
-fileinfo* list_directory(char* directory) {
+static fileinfo* list_directory(char* directory) {
     DIR *d = opendir(directory);
     if (d == NULL) {
-        errno = ENOENT;
         return NULL;
     }
 
@@ -152,11 +145,11 @@ fileinfo* list_directory(char* directory) {
     return head;
 }
 
-void print_regular(char const* name, int bitlength) {
+static void print_regular(char const* name, int bitlength) {
     printf("%s (regular, %d Byte)\n", name, bitlength);
 }
 
-void print_directory(char const* path, char const* filename, fileinfo* files) {
+static void print_directory(char const* path, char const* filename, fileinfo* files) {
     if (strcmp(path, "") != 0) {
         printf("\n%s/%s:\n", path, filename);
     }
@@ -185,6 +178,6 @@ void print_directory(char const* path, char const* filename, fileinfo* files) {
     }
 }
 
-void print_other(char const* name) {
+static void print_other(char const* name) {
     printf("%s (other)\n", name);
 }
