@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,12 +11,12 @@ public class Constant implements Expression {
 
     @Override
     public double eval(Map<String, Double> values) {
-        return 0;
+        return value;
     }
 
     @Override
     public Set<String> getVars() {
-        return null;
+        return new HashSet<>();
     }
 
     @Override

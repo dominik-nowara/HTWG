@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,12 +11,14 @@ public class Var implements Expression {
 
     @Override
     public double eval(Map<String, Double> values) {
-        return 0;
+        return values.get(value);
     }
 
     @Override
     public Set<String> getVars() {
-        return null;
+        Set<String> set = new HashSet<>();
+        set.add(value);
+        return set;
     }
 
     @Override
