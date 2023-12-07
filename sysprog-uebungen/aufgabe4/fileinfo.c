@@ -29,7 +29,6 @@ fileinfo* fileinfo_create(char* name) {
     struct stat sb;
 
     if (lstat(name, &sb) == -1) {
-        errno = ENOENT;
         return NULL;
     }
 
