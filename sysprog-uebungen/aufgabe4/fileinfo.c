@@ -174,6 +174,7 @@ static void print_directory(char const* path, char const* filename, fileinfo* fi
             else {
                 fileinfo_print(files->next);
             }
+            files = files->next;
         }
     }
 }
