@@ -158,8 +158,7 @@ static void print_directory(char const* path, char const* filename, fileinfo* fi
         printf("\n%s:\n", filename);
     }
 
-    fileinfo* nextfile = files->next;
-    if (files != NULL) {
+    if (files) {
         if (files->type == filetype_directory) {
             printf("%s (directory)\n", files->filename);
             print_directory(filename, files->filename, files->list);
@@ -168,15 +167,15 @@ static void print_directory(char const* path, char const* filename, fileinfo* fi
             fileinfo_print(files);
         }
 
-        while (nextfile != NULL) {
-            if (nextfile->type == filetype_directory) {
-                printf("%s (directory)\n", nextfile->filename);
-                print_directory(filename, nextfile->filename, nextfile->list);
+        while (files->next != NULL) {
+            if (files->next->type == filetype_directory) {
+                printf("%s (directory)\n", files->next->filename);
+                print_directory(filename, files->next->filename, files->next->list);
             }
             else {
-                fileinfo_print(nextfile);
+                fileinfo_print(files->next);
             }
-            nextfile = nextfile->next;
+            files = files->next;
         }
     }
 }
