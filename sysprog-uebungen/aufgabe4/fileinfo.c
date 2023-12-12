@@ -70,19 +70,21 @@ void fileinfo_destroy(fileinfo* info) {
     if (info->type == filetype_directory) {
         fileinfo* current = info->list;
 
-        while (current)
+        while (current != NULL)
         {
             fileinfo *next = current->next;
 
             if (current->type == filetype_directory) {
-                fileinfo_destroy(current->list);
+                fileinfo_destroy(current);
             }
-
-            free(current);
+            else {
+                free(current);
+            }
+            
             current = next;
         }
     }
-
+    
     free(info);
 }
 
@@ -156,6 +158,7 @@ static void print_directory(char const* path, char const* filename, fileinfo* fi
         printf("\n%s:\n", filename);
     }
 
+    fileinfo* nextfile = files->next;
     if (files != NULL) {
         if (files->type == filetype_directory) {
             printf("%s (directory)\n", files->filename);
@@ -165,15 +168,15 @@ static void print_directory(char const* path, char const* filename, fileinfo* fi
             fileinfo_print(files);
         }
 
-        while (files->next != NULL) {
-            if (files->next->type == filetype_directory) {
-                printf("%s (directory)\n", files->filename);
-                print_directory(filename, files->filename, files->list);
+        while (nextfile != NULL) {
+            if (nextfile->type == filetype_directory) {
+                printf("%s (directory)\n", nextfile->filename);
+                print_directory(filename, nextfile->filename, nextfile->list);
             }
             else {
-                fileinfo_print(files->next);
+                fileinfo_print(nextfile);
             }
-            files = files->next;
+            nextfile = nextfile->next;
         }
     }
 }
