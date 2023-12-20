@@ -18,7 +18,7 @@ int benotung::int_value() const {
 }
 
 bool benotung::ist_bestanden() const {
-    return note >= 40;
+    return note <= 40;
 }
 
 bool operator==(const benotung& l, const benotung& r) {
