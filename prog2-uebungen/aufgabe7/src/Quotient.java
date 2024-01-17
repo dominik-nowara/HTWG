@@ -8,16 +8,13 @@ public class Quotient extends CompoundExpression {
 
     @Override
     public double eval(Map<String, Double> values) {
-        super.eval(values);
+        firstValue = firstExp.eval(values);
+        secondValue = secondExp.eval(values);
         return firstValue / secondValue;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("(");
-        stringBuilder.append(firstExp.toString());
-        stringBuilder.append(" / ");
-        stringBuilder.append(secondExp.toString());
-        return stringBuilder.append(")").toString();
+        return this.toString(" / ");
     }
 }

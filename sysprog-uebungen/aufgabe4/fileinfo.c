@@ -29,7 +29,6 @@ fileinfo* fileinfo_create(char* name) {
     struct stat sb;
 
     if (lstat(name, &sb) == -1) {
-        errno = ENOENT;
         return NULL;
     }
 
@@ -71,19 +70,21 @@ void fileinfo_destroy(fileinfo* info) {
     if (info->type == filetype_directory) {
         fileinfo* current = info->list;
 
-        while (current)
+        while (current != NULL)
         {
             fileinfo *next = current->next;
 
             if (current->type == filetype_directory) {
-                fileinfo_destroy(current->list);
+                fileinfo_destroy(current);
             }
-
-            free(current);
+            else {
+                free(current);
+            }
+            
             current = next;
         }
     }
-
+    
     free(info);
 }
 
@@ -157,7 +158,7 @@ static void print_directory(char const* path, char const* filename, fileinfo* fi
         printf("\n%s:\n", filename);
     }
 
-    if (files != NULL) {
+    if (files) {
         if (files->type == filetype_directory) {
             printf("%s (directory)\n", files->filename);
             print_directory(filename, files->filename, files->list);
@@ -168,12 +169,13 @@ static void print_directory(char const* path, char const* filename, fileinfo* fi
 
         while (files->next != NULL) {
             if (files->next->type == filetype_directory) {
-                printf("%s (directory)\n", files->filename);
-                print_directory(filename, files->filename, files->list);
+                printf("%s (directory)\n", files->next->filename);
+                print_directory(filename, files->next->filename, files->next->list);
             }
             else {
                 fileinfo_print(files->next);
             }
+            files = files->next;
         }
     }
 }
