@@ -17,7 +17,7 @@ public class TelefonBuchEinfuegenPanel
 
     public TelefonBuchEinfuegenPanel(TelefonBuch tb) {
         telBuch = tb;
-        
+
 		JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayout(3, 1));
 		panel1.add(new JLabel("Name"));
@@ -45,10 +45,18 @@ public class TelefonBuchEinfuegenPanel
 
     public void actionPerformed(ActionEvent e) {
         if (tfEinfuegenName.getText().isEmpty()
-                || tfEinfuegenZusatz.getText().isEmpty()
                 || tfEinfuegenTelNr.getText().isEmpty())
             return;
 
-        telBuch.insert(tfEinfuegenName.getText(), tfEinfuegenZusatz.getText(), tfEinfuegenTelNr.getText());
+        boolean successful = telBuch.insert(tfEinfuegenName.getText(), tfEinfuegenZusatz.getText(), tfEinfuegenTelNr.getText());
+
+        if (successful) {
+            JOptionPane.showMessageDialog(null,"Der Eintrag wurde erfolgreich hinzugefügt!",
+                    "Hinzugefügt",1);
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"Eintrag mit dem Namen oder der Telefonnummer existiert bereits",
+                    "Fehler",3);
+        }
     }
 }

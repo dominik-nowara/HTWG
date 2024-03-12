@@ -20,12 +20,9 @@ public class TelefonBuchSuchenLoeschenPanel
 
     JTextArea textArea;
 
-    JDialog messageDialog;
 
     public TelefonBuchSuchenLoeschenPanel(TelefonBuch tb) {
         telBuch = tb;
-
-        messageDialog = new JDialog();
 
         this.setLayout(new BorderLayout());
 
@@ -42,6 +39,9 @@ public class TelefonBuchSuchenLoeschenPanel
         buttonAnwenden = new JButton("Anwenden");
         buttonAnwenden.addActionListener(this);
 
+        textArea = new JTextArea(10, 45);
+        textArea.setEditable(false);
+
         JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayout(2, 1));
         panel1.add(labelName);
@@ -53,6 +53,7 @@ public class TelefonBuchSuchenLoeschenPanel
         panel2.add(fieldZusatz);
 
         JPanel panelSuche = new JPanel();
+        panelSuche.setLayout(new BoxLayout(panelSuche, BoxLayout.LINE_AXIS));
         Border suchenBorder = BorderFactory.createTitledBorder("Suchen/Löschen");
         panelSuche.setBorder(suchenBorder);
         panelSuche.add(panel1);
@@ -61,30 +62,23 @@ public class TelefonBuchSuchenLoeschenPanel
         panelSuche.add(buttonAnwenden);
 
         JPanel panelAusgabe = new JPanel();
+        panelAusgabe.setLayout(new BorderLayout());
         Border ausgabeBorder = BorderFactory.createTitledBorder("Ausgabe");
         panelAusgabe.setBorder(ausgabeBorder);
-
-        textArea = new JTextArea(10, 45);
         panelAusgabe.add(textArea);
-        panelAusgabe.setMinimumSize(new Dimension(0, 600));
 
         this.add(panelSuche, BorderLayout.NORTH);
         this.add(panelAusgabe, BorderLayout.CENTER);
     }
 
     public void actionPerformed(ActionEvent e) {
+        if (fieldName.getText().isEmpty()) return;
+
         if (comboBox.getSelectedIndex() == 0) {
-            if (fieldName.getText().isEmpty()) return;
-
-            String text = "";
-
-            if (fieldZusatz.getText().isEmpty())
-                text = telBuch.exactSearch(fieldName.getText(), "");
-            else
-                text = telBuch.exactSearch(fieldName.getText(), fieldZusatz.getText());
+            String text = telBuch.exactSearch(fieldName.getText(), fieldZusatz.getText());
 
             if (text.isEmpty()){
-                JOptionPane.showMessageDialog(null,"Dieser Eintrag konnte nicht gefunden werden.",
+                JOptionPane.showMessageDialog(this,"Dieser Eintrag konnte nicht gefunden werden.",
                         "Nicht gefunden",2);
                 return;
             }
@@ -92,13 +86,11 @@ public class TelefonBuchSuchenLoeschenPanel
             textArea.setText(text);
         }
         else if (comboBox.getSelectedIndex() == 1) {
-            if (fieldName.getText().isEmpty()) return;
-
             List<String> prefixTexts = telBuch.prefixSearch(fieldName.getText());
             StringBuilder stringBuilder = new StringBuilder();
 
             if (prefixTexts == null) {
-                JOptionPane.showMessageDialog(null,"Die Einträge mit dem Prefix konnten nicht gefunden werden.",
+                JOptionPane.showMessageDialog(this,"Die Einträge mit dem Prefix konnten nicht gefunden werden.",
                         "Nicht gefunden",2);
                 return;
             }
@@ -110,21 +102,14 @@ public class TelefonBuchSuchenLoeschenPanel
             textArea.setText(stringBuilder.toString());
         }
         else {
-            if (fieldName.getText().isEmpty()) return;
+            boolean successful = telBuch.remove(fieldName.getText(), fieldZusatz.getText());
 
-            boolean wasRemoved = false;
-
-            if (fieldZusatz.getText().isEmpty())
-                wasRemoved = telBuch.remove(fieldName.getText(), "");
-            else
-                wasRemoved = telBuch.remove(fieldName.getText(), fieldZusatz.getText());
-
-            if (wasRemoved) {
-                JOptionPane.showMessageDialog(null,"Der Eintrag wurde erfolgreich entfernt.",
+            if (successful) {
+                JOptionPane.showMessageDialog(this,"Der Eintrag wurde erfolgreich entfernt.",
                         "Entfernt",1);
             }
             else {
-                JOptionPane.showMessageDialog(null,"Der Eintrag konnte nicht entfernt werden",
+                JOptionPane.showMessageDialog(this,"Der Eintrag konnte nicht entfernt werden",
                         "Fehler",3);
             }
         }

@@ -53,11 +53,12 @@ public class TelefonBuch {
 
     public List<String> prefixSearch(String s) {
         List<String> results = new ArrayList<>();
+        s = s.toLowerCase();
 
         for (Entry<String, String> e: telBuch.entrySet()) {
            String key = e.getKey();
 
-           if (key.startsWith(s)) {
+           if (key.toLowerCase().startsWith(s)) {
                String value = e.getValue();
                results.add(key + " " + value);
            }

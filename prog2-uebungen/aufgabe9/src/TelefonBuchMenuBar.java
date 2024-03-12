@@ -50,6 +50,9 @@ public class TelefonBuchMenuBar
 
             if (chooserResult == JFileChooser.APPROVE_OPTION) {
                 telBuch.read(fileChooser.getSelectedFile());
+
+                JOptionPane.showMessageDialog(this,"TelefonBuch erfolgreich geladen!",
+                        "Geladen",1);
             }
         }
         else if (source == menuItemSpeicher) {
@@ -58,10 +61,19 @@ public class TelefonBuchMenuBar
 
             if (chooserResult == JFileChooser.APPROVE_OPTION) {
                 telBuch.save(fileChooser.getSelectedFile());
+
+                JOptionPane.showMessageDialog(this,"TelefonBuch erfolgreich gespeichert!",
+                        "Gespeichert",1);
             }
         }
         else {
-            System.exit(0);
+            int result = JOptionPane.showConfirmDialog(this,
+                    "Beim beenden der Anwendung wird das Telefonbuch nicht gespeichert. Fortfahren?", "Anwendung beenden",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                System.exit(0);
+            }
         }
     }
 }

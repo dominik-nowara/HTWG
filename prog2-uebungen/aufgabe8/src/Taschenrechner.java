@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Locale;
 
-public class Taschenrechner extends JFrame implements ActionListener, ItemListener {
+public class Taschenrechner extends JFrame implements ActionListener, ItemListener, KeyListener {
 
     JTextField textField1;
     JTextField textField2;
@@ -27,10 +27,6 @@ public class Taschenrechner extends JFrame implements ActionListener, ItemListen
     boolean isDark;
 
     public Taschenrechner() {
-        this.setTitle("Taschenrechner");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setPreferredSize(new Dimension(500, 300));
-
         JLabel label1 = new JLabel("Operand x");
         JLabel label2 = new JLabel("Operand y");
         JLabel labelResolution = new JLabel("Resultat");
@@ -40,12 +36,13 @@ public class Taschenrechner extends JFrame implements ActionListener, ItemListen
         textFieldResolution = new JTextField("0",10);
         textFieldResolution.setEditable(false);
 
+        textField1.addKeyListener(this);
+        textField2.addKeyListener(this);
+
         buttonColor = new JCheckBox("Helles Display");
         buttonColor.setSelected(true);
-
         buttonDegree = new JRadioButton("Deg");
         buttonDegree.setSelected(true);
-
         buttonRadius = new JRadioButton("Rad");
 
         ButtonGroup group = new ButtonGroup();
@@ -116,6 +113,9 @@ public class Taschenrechner extends JFrame implements ActionListener, ItemListen
         this.add(panelButton);
         this.add(panelClear);
 
+        this.setTitle("Taschenrechner");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setPreferredSize(new Dimension(500, 300));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -128,6 +128,14 @@ public class Taschenrechner extends JFrame implements ActionListener, ItemListen
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
+
+        if (source == buttonClear) {
+            textField1.setText("0");
+            textField2.setText("0");
+            textFieldResolution.setText("0");
+            return;
+        }
+
         String s1 = textField1.getText();
         String s2 = textField2.getText();
 
@@ -136,12 +144,18 @@ public class Taschenrechner extends JFrame implements ActionListener, ItemListen
 
         try {
             o1 = Double.parseDouble(s1.replaceAll(",", "."));
+        } catch (Exception x) {
+            textField1.setForeground(Color.red);
+            System.out.println("Fehlereingabe!");
+            source = null;
+        }
+
+        try {
             o2 = Double.parseDouble(s2.replaceAll(",", "."));
         } catch (Exception x) {
-            if (source != buttonClear) {
-                System.out.println("Fehlereingabe!");
-                source = null;
-            }
+            textField2.setForeground(Color.red);
+            System.out.println("Fehlereingabe!");
+            source = null;
         }
 
         if (source == buttonPlus) {
@@ -179,11 +193,6 @@ public class Taschenrechner extends JFrame implements ActionListener, ItemListen
             textFieldResolution.setText(String.format(Locale.US, "%.2f",Math.log(o1) / Math.log(2)));
             textField2.setText("0");
         }
-        else if (source == buttonClear) {
-            textField1.setText("0");
-            textField2.setText("0");
-            textFieldResolution.setText("0");
-        }
     }
 
     @Override
@@ -217,5 +226,33 @@ public class Taschenrechner extends JFrame implements ActionListener, ItemListen
             isRad = false;
         else if (source == buttonRadius)
             isRad = true;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        Object source = e.getSource();
+
+        if (source == textField1) {
+            if (!isDark)
+                textField1.setForeground(Color.black);
+            else
+                textField1.setForeground(Color.yellow);
+        }
+        else {
+            if (!isDark)
+                textField2.setForeground(Color.black);
+            else
+                textField2.setForeground(Color.yellow);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
