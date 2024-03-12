@@ -1,0 +1,119 @@
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ ./bubblesort 1000 < /dev/null | tail -1000 > out.txt
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ sort -n out.txt | diff - out.txt
+
+
+Was gibt die obige Befehlsfolge im Terminal aus, wenn Ihr bubblesort richtig sortiert hat?
+- Die Ausgabe sollte leer sein (was sie in diesem Fall ist)
+
+
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time java Bubblesort 1000 < /dev/null > /dev/null
+
+real    0m0,108s
+user    0m0,131s
+sys     0m0,025s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time ./bubblesort 1000 < /dev/null > /dev/null
+
+real    0m0,013s
+user    0m0,005s
+sys     0m0,010s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time java Bubblesort 10000 < /dev/null > /dev/null
+
+real    0m0,193s
+user    0m0,315s
+sys     0m0,033s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time ./bubblesort 10000 < /dev/null > /dev/null
+
+real    0m0,193s
+user    0m0,191s
+sys     0m0,003s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time java Bubblesort 100000 < /dev/null > /dev/null
+
+real    0m15,815s
+user    0m16,027s
+sys     0m0,053s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time ./bubblesort 100000 < /dev/null > /dev/null
+
+real    0m28,072s
+user    0m28,047s
+sys     0m0,009s
+
+
+
+Wächst die Ausführungszeit tatsächlich quadratisch mit der Array-Größe?
+- In Java nicht, in C wächst es vom 1000er auf den 10.000er Schritt fast quadratisch,
+beim 10.000er auf den 100.000er Schritt ist die Differenz dann noch sehr hoch (0,193^2 =~ 37,249, also knapp 9 Sekunden Unterschied).
+
+Ist das Java-Programm oder das C-Programm schneller? Können Sie sich den Unterschied erklären?
+- Im kleinen 1000er Bereich, ist C deutlich schneller, im 10.000er Bereich sind beide ca. gleich schnell
+und im hohen 100.000er Bereich ist Java deutlisch schneller.
+- Es liegt sehr wahrscheinlich in C an der Malloc Funktion,
+welche bei einem höheren n auch deutlich mehr Zeit benötigt, um den Speicher zu reservieren.
+
+
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ make "CC=gcc -g -O2" clean all
+rm -f bubblesort bubblesort.o
+gcc -g -O2 -Wall -Wextra -Werror -Wvla -std=c11 -pedantic    bubblesort.c   -o bubblesort
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time java Bubblesort 1000 < /dev/null > /dev/null
+
+real    0m0,098s
+user    0m0,114s
+sys     0m0,025s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time ./bubblesort 1000 < /dev/null > /dev/null
+
+real    0m0,013s
+user    0m0,006s
+sys     0m0,009s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time java Bubblesort 10000 < /dev/null > /dev/null
+
+real    0m0,200s
+user    0m0,325s
+sys     0m0,039s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time ./bubblesort 10000 < /dev/null > /dev/null
+
+real    0m0,223s
+user    0m0,217s
+sys     0m0,008s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time java Bubblesort 100000 < /dev/null > /dev/null
+
+real    0m16,037s
+user    0m16,273s
+sys     0m0,052s
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe2   main !+?  
+❯ time ./bubblesort 100000 < /dev/null > /dev/null
+
+real    0m26,110s
+user    0m26,039s
+sys     0m0,021s
+
+Ist das optimierte Programm erkennbar schneller?
+- Erkennbar schneller wird das optimierte Programm erst im 100.000er Bereich. Davor wird es nicht merkbar schneller
+(in meinem Fall sogar eher langsamer).

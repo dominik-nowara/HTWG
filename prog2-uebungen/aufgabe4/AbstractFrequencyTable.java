@@ -26,8 +26,6 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
 	public void collectNMostFrequent(int n, FrequencyTable<? super T> fq) {
 		fq.clear();
 		n = Math.max(n, 0);
-		n = Math.min(n, size());
-
 		int count = 0;
 		for (var x : this) {
 			fq.add(x.getData(), x.getFrequency());

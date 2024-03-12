@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ZusammengesetzteTätigkeit implements Tätigkeit {
-    protected ArrayList<Tätigkeit> tätigkeits = new ArrayList<Tätigkeit>();
+    protected List<Tätigkeit> tätigkeits = new ArrayList<>();
 
     /**
      * Add a job to the current list
@@ -31,13 +32,7 @@ public abstract class ZusammengesetzteTätigkeit implements Tätigkeit {
         int amount = 0;
 
         for (var job: tätigkeits) {
-            if (job instanceof ZusammengesetzteTätigkeit) {
-                ZusammengesetzteTätigkeit composed = (ZusammengesetzteTätigkeit) job;
-                amount += composed.getAmount();
-            }
-            else {
-                amount += 1;
-            }
+            amount += job.getAmount();
         }
 
         return amount;

@@ -1,0 +1,88 @@
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe1   main ✘!+?  
+❯ make clean
+rm -f aufgabe1 aufgabe1.o
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe1   main ✘!+?  
+❯ make
+gcc -g -fno-stack-protector -Wwrite-strings -Wall -Wextra -Werror -std=c11 -pedantic    aufgabe1.c   -o aufgabe1
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe1   main ✘!+?  
+❯ ./aufgabe1
+Adresse         Platzbedarf     Typ                     Name            Wert
+0x7ffed3b7122c  4               Int                     zahl_i          10
+0x7ffed3b7122a  2               Short Int               zahl_s          12
+0x7ffed3b71220  8               Long Int                zahl_l          123
+0x7ffed3b71218  8               Long Long Int           zahl_ll         1234
+0x7ffed3b71214  4               Unsigned Int            zahl_u          37777777777
+0x7ffed3b71212  2               Unsigned Short Int      zahl_us         65535
+0x7ffed3b71208  8               Unsigned Long Int       zahl_ul         281474976710655
+0x7ffed3b71200  8               Unsigned Long Long Int  zahl_ull        18446744073709551615
+0x7ffed3b711fc  4               Float                   zahl_float      3.140000
+0x7ffed3b711f0  8               Double                  zahl_double     3.140000
+0x7ffed3b711e0  16              Long Double             zahl_ld         3.140000
+0x7ffed3b711df  1               Char                    character       b
+0x7ffed3b711de  1               Signed Char             s_char          -5
+0x7ffed3b711dd  1               Unsigned Char           u_char          222
+0x7ffed3b711dc  1               Boolean                 boolean         0
+0x7ffed3b711d0  8               Char*                   string          Hallo
+
+LP64
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe1   main ✘!+?  
+❯ ./aufgabe1 | sort
+
+0x7ffdb3549680  8               Char*                   string          Hallo
+0x7ffdb354968c  1               Boolean                 boolean         0
+0x7ffdb354968d  1               Unsigned Char           u_char          222
+0x7ffdb354968e  1               Signed Char             s_char          -5
+0x7ffdb354968f  1               Char                    character       b
+0x7ffdb3549690  16              Long Double             zahl_ld         3.140000
+0x7ffdb35496a0  8               Double                  zahl_double     3.140000
+0x7ffdb35496ac  4               Float                   zahl_float      3.140000
+0x7ffdb35496b0  8               Unsigned Long Long Int  zahl_ull        18446744073709551615
+0x7ffdb35496b8  8               Unsigned Long Int       zahl_ul         281474976710655
+0x7ffdb35496c2  2               Unsigned Short Int      zahl_us         65535
+0x7ffdb35496c4  4               Unsigned Int            zahl_u          37777777777
+0x7ffdb35496c8  8               Long Long Int           zahl_ll         1234
+0x7ffdb35496d0  8               Long Int                zahl_l          123
+0x7ffdb35496da  2               Short Int               zahl_s          12
+0x7ffdb35496dc  4               Int                     zahl_i          10
+Adresse         Platzbedarf     Typ                     Name            Wert
+LP64
+
+░▒▓   …/HTWG/sysprog-uebungen/aufgabe1   main ✘!+? 
+❯ ./aufgabe1 | sort -r
+LP64
+Adresse         Platzbedarf     Typ                     Name            Wert
+0x7ffca74b38ac  4               Int                     zahl_i          10
+0x7ffca74b38aa  2               Short Int               zahl_s          12
+0x7ffca74b38a0  8               Long Int                zahl_l          123
+0x7ffca74b3898  8               Long Long Int           zahl_ll         1234
+0x7ffca74b3894  4               Unsigned Int            zahl_u          37777777777
+0x7ffca74b3892  2               Unsigned Short Int      zahl_us         65535
+0x7ffca74b3888  8               Unsigned Long Int       zahl_ul         281474976710655
+0x7ffca74b3880  8               Unsigned Long Long Int  zahl_ull        18446744073709551615
+0x7ffca74b387c  4               Float                   zahl_float      3.140000
+0x7ffca74b3870  8               Double                  zahl_double     3.140000
+0x7ffca74b3860  16              Long Double             zahl_ld         3.140000
+0x7ffca74b385f  1               Char                    character       b
+0x7ffca74b385e  1               Signed Char             s_char          -5
+0x7ffca74b385d  1               Unsigned Char           u_char          222
+0x7ffca74b385c  1               Boolean                 boolean         0
+0x7ffca74b3850  8               Char*                   string          Hallo
+
+
+Sind die Variablen in der Reihenfolge ihrer Definition im Hauptspeicher abgelegt?
+- Die Variablen sind in einer umgekehrten Reihenfolge im Hauptspeicher abgelegt. Dies sieht man gut, wenn man auf den Befehl inklusive sort schaut.
+
+Liegen die Variablen direkt hintereinander oder gibt es Lücken? Falls es Lücken gibt, wo liegen sie? Können Sie sich erklären, warum es eventuell Lücken gibt?
+- Es existieren Lücken im Speicher hinter dem char*, double, unsigned long int und long int. In der Speicherbelegung von C wird sogenanntes "padding" betrieben, welches das Aufrufen der Variablen im Speicher verschnellert. Wenn der nächst beste Speicherpunkt mit modulo Speicherplatzbedarf = 0 den Platzbedarf nicht decken kann (im Falle von char* 8 bits), dann wird dieser Speicherpunkt übersprungen und in den nächsten gelegt. Dies führt zu einer ungenutzten Lücke.
+
+Wie viel Speicher belegen die Variablen insgesamt, also inklusive eventueller Lücken?
+- char*: 8bits + 4bits Lücke = 12bits
+- double: 8bits + 4bits Lücke = 12bits
+- unsigned long int: 8bits + 2bits Lücke = 10bytes
+- long int: 8bits + 2bits Lücke = 10bytes
+Größte - kleinste Adresse + Platzbedarf an der größten Stelle = insgesamt mit Lücken
+- 96

@@ -21,8 +21,8 @@ public class Buch {
             return false;
         }
         else if (entleiher == null) {
-            this.entleiher = p;
             p.leihtAus(this);
+            this.entleiher = p;
         }
 
         return true;

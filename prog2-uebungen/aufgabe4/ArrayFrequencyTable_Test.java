@@ -17,7 +17,7 @@ public class ArrayFrequencyTable_Test {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		test1();
-		//test2();
+		test2();
 	}
 	
 	private static void test1() {
