@@ -27,7 +27,7 @@ public class TUI {
                 create(args);
                 break;
             case "read":
-                read(Integer.parseInt(args[1]));
+                read(Integer.parseInt(args[1]), args[2]);
             case "p":
                 if (dic == null)
                     System.out.println("Use 'create' to create your first Dictionary!");
@@ -81,21 +81,12 @@ public class TUI {
             System.out.println(v.getKey() + ": " + v.getValue());
     }
 
-    private static void read(int n) throws IOException {
+    private static void read(int n, String path) throws IOException {
 
         int counter = 0;
 
-        File selectedFile = null;
+        File selectedFile = new File(path);
         String line;
-
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File("/home/niklas13/Programme/htwg/ALDA"));
-        int rv = chooser.showOpenDialog(null);
-        if (rv == JFileChooser.APPROVE_OPTION) {
-            selectedFile = chooser.getSelectedFile();
-            System.out.println(selectedFile.getAbsolutePath());
-        } else
-            return;
 
         FileReader in;
         long start = 0;
