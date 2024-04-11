@@ -82,7 +82,6 @@ public class TUI {
     }
 
     private static void read(int n, String path) throws IOException {
-
         int counter = 0;
 
         File selectedFile = new File(path);
@@ -114,7 +113,7 @@ public class TUI {
 
     private static void search(String[] args) {
         try {
-            System.out.printf(dic.search(args[1]));
+            System.out.println(dic.search(args[1]));
         }
         catch (NullPointerException e) {
             System.err.println("Wort wurde nicht gefunden!");
