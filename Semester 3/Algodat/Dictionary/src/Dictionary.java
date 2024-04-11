@@ -1,6 +1,3 @@
-// O. Bittel
-// 26.09.2022
-
 import java.util.Iterator;
 
 /**

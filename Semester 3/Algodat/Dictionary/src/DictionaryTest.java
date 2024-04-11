@@ -1,10 +1,3 @@
-/*
- * Test der verscheidenen Dictionary-Implementierungen
- *
- * O. Bittel
- * 1.8.2023
- */
-
 /**
  * Static test methods for different Dictionary implementations.
  * @author oliverbittel
