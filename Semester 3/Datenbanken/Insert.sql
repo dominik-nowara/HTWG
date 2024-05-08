@@ -12,7 +12,7 @@ INSERT INTO ferienwohnung (wohnungsname, zimmer, groesse, preis, wohnungs_id, ad
 INSERT INTO ausstattung (ausstattungsname) VALUES ('Sauna');
 INSERT INTO beinhaltete_ausstattung (wohnungs_id, ausstattungsname) VALUES (1, 'Sauna');
 INSERT INTO bild (bildlink, wohnungs_id)  
-    VALUES ('https://bild.com', 1);
+    VALUES ('https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Naked_mole_rat.jpg/170px-Naked_mole_rat.jpg', 1);
 
 INSERT INTO attraktion (attraktionsname, attraktionsbeschreibung) 
     VALUES ('Turm der Türme', 'Dies ist einfach nur ein Turm');
@@ -47,5 +47,4 @@ INSERT INTO anzahlung (anzahlungs_id, geldbetrag, zahlungsdatum, buchungsnummer)
     );
 
 commit;
-
 end;
