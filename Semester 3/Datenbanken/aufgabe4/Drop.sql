@@ -1,0 +1,11 @@
+DROP TABLE attraktions_entfernung;
+DROP TABLE anzahlung;
+DROP TABLE buchung;
+DROP TABLE kunde;
+DROP TABLE bild;
+DROP TABLE beinhaltete_ausstattung;
+DROP TABLE ausstattung;
+DROP TABLE ferienwohnung;
+DROP TABLE attraktion;
+DROP TABLE adresse;
+DROP TABLE land;

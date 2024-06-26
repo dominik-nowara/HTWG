@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<?import org.controlsfx.control.CheckComboBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="gui.MainController">
+    <left>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="Preis"/>
+            <HBox spacing="5">
+                <TextField fx:id="fromMoney" prefWidth="100"/>
+                <Label text="-"/>
+                <TextField fx:id="toMoney" prefWidth="100"/>
+            </HBox>
+            <Label text="Zimmer"/>
+            <TextField fx:id="roomsField" promptText="1"/>
+            <Label text="Land"/>
+            <ComboBox fx:id="countryDropdown" />
+            <Label text="Ausstattung"/>
+            <CheckComboBox fx:id="equipmentDropdown" prefHeight="20" />
+
+            <HBox spacing="95">
+                <Label text="Von"/>
+                <Label text="Bis"/>
+            </HBox>
+            <HBox spacing="5">
+                <DatePicker maxWidth="100" fx:id="fromDate" />
+                <Label text="-"/>
+                <DatePicker maxWidth="100" fx:id="toDate" />
+            </HBox>
+
+            <Button text="Suchen" onAction="#handleSearch"/>
+        </VBox>
+    </left>
+    <center>
+        <ScrollPane>
+            <VBox fx:id="listContainer" spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
